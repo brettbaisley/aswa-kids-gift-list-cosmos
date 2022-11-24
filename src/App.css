@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
 .app {
   display: flex;
   flex-direction: column;
@@ -8,13 +14,15 @@
   padding: 0 2rem;
 }
 
-.app-header {
-  background-color: darkgray;
-  height: 3rem;
-}
-
 .app-main {
   flex: 1;
+}
+
+.app-main h1 {
+  font-family: "Mona-Sans";
+  font-weight: 900;
+  font-variation-settings: "ital" 15, "wdth" 75;
+  font-size: min(15vw, 140px);
 }
 
 .app-footer {

@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Mona-Sans";
+  src: local("Mona-Sans"), url("./fonts/Mona\ Sans/Mona-Sans.ttf") format("truetype");
+  font-weight: bold;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

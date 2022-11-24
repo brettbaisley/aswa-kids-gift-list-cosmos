@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './fonts/Mona Sans/Mona-Sans.ttf'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
