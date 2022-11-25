@@ -1,8 +1,8 @@
 const  { Schema, model } = require("mongoose");
 
 const BookSchema = new Schema(
-    { title: String },
-    { genre: String }
+    { title: {type: String, required: true} },
+    { genre: {type: String, required: true} }
 );
 
 
