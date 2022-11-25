@@ -1,26 +1,16 @@
-import * as db from "../lib/azure-cosmosdb-mongodb";
+
+const cosmos = require('../models/mongo.js');
 
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    try {
-        let response = null;
-        await db.init();
-
-        response = {
-            documentResponse: await db.findItemById(req?.body?.id),
-        };
-
-        context.res = {
-            body: response,
-        };
-
-    } catch (err) {
-        context.log(`*** Error throw: ${JSON.stringify(err)}`);
-    
-        context.res = {
-          status: 500,
-          body: err,
-        };
-    }
+    // Connect to the database
+    await cosmos.connect(process.env["CosmosDbConnectionString"]);
+    books = await cosmos.Books.list();
+    context.res.body = books;
 }
+
+
+// export const getAll = async () => {
+//     return await BookModel.find({});
+// };
