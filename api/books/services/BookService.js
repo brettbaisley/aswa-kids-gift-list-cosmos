@@ -18,7 +18,12 @@ class BookService {
     }
 
     static async updateBook(bookId, data) {
-        return await BookModel.findByIdAndUpdate(bookId, data).exec();
+        var book = await BookModel.findOne({ _id: bookId })
+        book.title = data.title;
+        book.genre = data.genre;
+        book.save();
+
+        //return await BookModel.findByIdAndUpdate(bookId, data).exec();
     }
 
     static async deleteBook(bookId) {

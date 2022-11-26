@@ -7,6 +7,7 @@ module.exports = async function (context, req) {
     try {
         let response = null;
         const bookId = context.bindingData.bookId;
+        context.log(`Book ID: ${bookId}`)
 
         // Create database connection
         await mongoose.connect(process.env["CosmosDbConnectionString"]);
@@ -36,7 +37,14 @@ module.exports = async function (context, req) {
             break;
 
             case "PUT":
-                ///FILL THIS IN
+                if (req?.body?.document) {
+                    const updateBook = await BookService.updateBook(bookId, req?.body?.document)
+                    response = {
+                        documentResponse: updateBook
+                    }
+                } else {
+                    throw Error("No document found")
+                };
             break;
 
             case "DELETE":
