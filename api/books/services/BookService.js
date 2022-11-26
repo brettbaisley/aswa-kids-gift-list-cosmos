@@ -1,35 +1,28 @@
-const mongoose = require("mongoose");
+const { ReadPreference } = require("mongodb");
 const { BookModel } = require("../models/Book");
 
 class BookService {
 
-    static async connect() {
-        return await mongoose.connect(process.env["CosmosDbConnectionString"]);
-    }
-
-    static async disconnect() {
-        return await mongoose.close();
-    }
-
     static async getBooks() {
-        return BookModel.find({}).exec();
+        return await BookModel.find({}).read(ReadPreference.NEAREST).exec();
     }
 
     static async getBook(bookId) {
-        return BookModel.findById(bookId).exec();
+        return await BookModel.findById(bookId).read(ReadPreference.NEAREST).exec();
     }
 
-    static async create(data) {
-        const book = new BookModel(data);
-        return book.save();
+    static async addBook(data) {
+        return await BookModel.create(data);
+        //return await BookModel.create( {"title": "New Title", "genre": "fake news"})
+        
     }
 
-    static async update(bookId, data) {
-        return BookModel.findByIdAndUpdate(bookId, data).exec();
+    static async updateBook(bookId, data) {
+        return await BookModel.findByIdAndUpdate(bookId, data).exec();
     }
 
-    static async delete(bookId) {
-        return BookModel.deleteOne({_id: bookId}).exec();
+    static async deleteBook(bookId) {
+        return await BookModel.deleteOne({_id: bookId}).exec();
     }
 }
 
