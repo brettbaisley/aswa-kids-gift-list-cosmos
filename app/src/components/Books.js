@@ -11,17 +11,12 @@ export default class Books extends Component {
     }
 
     componentDidMount() {
-        fetch('localhost:7071/api/books')
-            .then(result => {
-                console.log(`Result: ${result}`)
-                result.json()
-            })
-            .then(json => {
-                console.log(`Data: ${json}`)
-                this.setState( {books: json });
-            })
+        
+        fetch('/api/books')
+            .then(response => response.json())
+            //.then(json => resolve(json))
             .catch(err => {
-                console.log(`ERROR fetching API data: ${err}`)
+                console.log(err);
             });
     }
 
@@ -32,8 +27,12 @@ export default class Books extends Component {
             <div>
                 <h1>Counter is: {this.state.counter}</h1>
 
+                {
+                     fetch("/api/text")
+                }
+
                 <ul className="books">
-                    { 
+                    {/* { 
                         this.state.books.map(book => {
                             return (
                                 <li key={book._id}>
@@ -41,7 +40,7 @@ export default class Books extends Component {
                                 </li>
                             );  
                         })  
-                    }
+                    } */}
                 </ul>
                 <div className="editarea">
                     {

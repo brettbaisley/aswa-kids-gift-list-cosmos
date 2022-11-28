@@ -49,6 +49,10 @@ module.exports = async function (context, req) {
         }
 
         context.res = {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify([
                 {
                   "_id": "63820f418b1cf13e201e58a8",
