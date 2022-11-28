@@ -14,7 +14,7 @@ export default class Books extends Component {
         
         fetch('/api/books')
             .then(response => response.json())
-            //.then(json => resolve(json))
+            .then(json => this.setState( {books: json }))
             .catch(err => {
                 console.log(err);
             });
@@ -27,12 +27,8 @@ export default class Books extends Component {
             <div>
                 <h1>Counter is: {this.state.counter}</h1>
 
-                {
-                     fetch("/api/text")
-                }
-
                 <ul className="books">
-                    {/* { 
+                    { 
                         this.state.books.map(book => {
                             return (
                                 <li key={book._id}>
@@ -40,7 +36,7 @@ export default class Books extends Component {
                                 </li>
                             );  
                         })  
-                    } */}
+                    }
                 </ul>
                 <div className="editarea">
                     {
