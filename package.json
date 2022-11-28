@@ -5,12 +5,16 @@
   "main": "index.js",
   "devDependencies": {
     "@azure/static-web-apps-cli": "github:azure/static-web-apps-cli",
-    "azure-functions-core-tools": "^4.0.4895"
+    "azure-functions-core-tools": "^4.0.4895",
+    "concurrently": "^7.6.0"
   },
   "scripts": {
-    "run": "swa start http://localhost:4280 --app-location ./app --run='npm start' --api-location ./api --func-args='--javascript'",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "start-api": "cd api && npm start",
+    "start-app": "cd app && npm start",
+    "start-dev": "concurrently \"npm:start-api\" \"npm:start-app\" ",
+    "start-swa": "swa start http://localhost:3000 --api-location http://localhost:7071",
+    "start": "npm run start-dev && npm run start-swa"
+  }, 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brettbaisley/aswa-kids-gift-list-cosmos.git"
