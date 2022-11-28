@@ -16,22 +16,16 @@ module.exports = async function (context, req) {
         switch(req.method) {
             case "GET":
                 if (bookId) {
-                    response = {
-                        documentResponse: await BookService.getBook(bookId)
-                    };
+                    response = await BookService.getBook(bookId);
                 } else {
-                    response = {
-                        documentResponse: await BookService.getBooks()
-                    };
+                    response = await BookService.getBooks();
                 }
             break;
 
             case "POST":
                 if (req?.body?.document) {
                     const insertBook = await BookService.addBook(req?.body?.document)
-                    response = {
-                        documentResponse: insertBook
-                    }
+                    response = insertBook;
                 } else {
                     throw Error("No document found")
                 };
@@ -40,9 +34,7 @@ module.exports = async function (context, req) {
             case "PUT":
                 if (req?.body?.document) {
                     const updateBook = await BookService.updateBook(bookId, req?.body?.document)
-                    response = {
-                        documentResponse: updateBook
-                    }
+                    response = updateBook;
                 } else {
                     throw Error("No document found")
                 };
@@ -50,9 +42,7 @@ module.exports = async function (context, req) {
 
             case "DELETE":
                 if (bookId) {
-                    response = {
-                        deleteResponse: await BookService.deleteBook(bookId)
-                    }
+                    response = await BookService.deleteBook(bookId);                    
                 } else {
                     throw Error("No bookId specified to delete")
                 }
