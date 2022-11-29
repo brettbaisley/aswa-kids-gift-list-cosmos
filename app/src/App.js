@@ -1,15 +1,15 @@
 import './App.css';
-import Books from './components/Books';
+import Books from './components/Books/Books';
 
 
 
-function App() {
+const App = () => {
   return (
-    <div>
+    <>
       <h1>Books</h1>
       <div className="header-bar"></div> 
       <Books />
-    </div>
+    </>
   );
 }
 
