@@ -8,36 +8,20 @@ const Books = () => {
     useEffect(() => {
         let ignore = false;
 
-        const getBooks = async () => {
-            const response = await fetch("/api/books");
+        async function getBooks() {
+            const response = await fetch(`/api/books`);
             const json = await response.json();
-            console.log(`JSON : ${json}`);
-            setBooks(json);
-            ignore = true;
-            
-            
+            if (!ignore) {
+                setBooks(json);
+            }
         }
 
-        if (!ignore) {
-            getBooks();
-            console.log('i fire once');
-        }
+        getBooks();
 
-        return () => {
-            ignore = true;
-        };
-
-        // fetch('/api/books')
-        //     .then(response => response.json())
-        //     .then(json => {
-        //         setBooks( json );
-        //         console.log(`JSON : ${json}`);
-        //     })
-        //     .catch(err => { console.log(err) });
+        return () => ignore = true;
     },[]);
 
-    // if (!books) return <div>Loading...</div>;
-
+    if (!books) return <div>Loading...</div>;
 
     return(
         <>
