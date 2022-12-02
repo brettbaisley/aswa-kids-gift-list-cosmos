@@ -2,7 +2,7 @@ import React from "react";
 
 const Book = (props) => {
     return(
-        <li key={props.book._id}>
+        <li>
             <button className="delete-button">Delete</button>
             <div className="book-element">
                 <p className="title">{props.book.title}</p>

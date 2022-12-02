@@ -6,15 +6,34 @@ const Books = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        console.log('i fire once');
+        let ignore = false;
 
-        fetch('/api/books')
-            .then(response => response.json())
-            .then(json => {
-                setBooks( json );
-                console.log(`JSON : ${json}`);
-            })
-            .catch(err => { console.log(err) });
+        const getBooks = async () => {
+            const response = await fetch("/api/books");
+            const json = await response.json();
+            console.log(`JSON : ${json}`);
+            setBooks(json);
+            ignore = true;
+            
+            
+        }
+
+        if (!ignore) {
+            getBooks();
+            console.log('i fire once');
+        }
+
+        return () => {
+            ignore = true;
+        };
+
+        // fetch('/api/books')
+        //     .then(response => response.json())
+        //     .then(json => {
+        //         setBooks( json );
+        //         console.log(`JSON : ${json}`);
+        //     })
+        //     .catch(err => { console.log(err) });
     },[]);
 
     // if (!books) return <div>Loading...</div>;
@@ -27,7 +46,7 @@ const Books = () => {
             <ul className="books">
                 { 
                     books && books.map(book => {
-                        return <Book book={book} />;
+                        return <Book key={book._id} book={book} />;
                     })  
                 }
             </ul>
