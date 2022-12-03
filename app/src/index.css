@@ -49,3 +49,9 @@ button.delete-button {
   color: white;
   padding: 4px;
 }
+
+.selected {
+  background-color: #cfd8dc !important;
+  background-color: #0078d7 !important;
+  color: white;
+}
