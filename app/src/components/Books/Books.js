@@ -5,8 +5,10 @@ import EditBook from './EditBook';
 const Books = () => {
 
     const [books, setBooks] = useState([]);
-    const [selectedBook, setSelectedBook] = useState("");
+    const [selectedBook, setSelectedBook] = useState(null);
     const [addingBook, setAddingBook] = useState(false);
+
+    const [title, setTitle] = useState("");
 
     useEffect(() => {
         let ignore = false;
@@ -33,30 +35,25 @@ const Books = () => {
     }
 
     const handleCancel = () => {
-        setSelectedBook("");
+        setSelectedBook(null);
     }
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(`BEFORE STATE: ${JSON.stringify(selectedBook)}`)
         let tmpSelectedBook = selectedBook;
-        console.log(`before: tmpSelectedBook is: ${tmpSelectedBook[name]}`)
         tmpSelectedBook[name] = value;
-        console.log(`after: tmpSelectedBook[${name}] is: ${tmpSelectedBook[name]}`)
-        console.log(tmpSelectedBook);
-        setSelectedBook(tmpSelectedBook);
-        console.log(`AFTER STATE: ${JSON.stringify(selectedBook)}`)
+        setSelectedBook({...tmpSelectedBook});
 
+        // setSelectedBook({...selectedBook, 'title': value})
 
-        // setSelectedBook( {...selectedBook, name: value })
-
+        console.log("I just updated selectedBook state!")
     }
 
     if (!books) return <div>Loading...</div>;
 
     return(
         <>
-            <h1>Counter is: </h1>
+            <h1>Counter is: {selectedBook && selectedBook.title}</h1>
 
             <ul className="books">
                 { 

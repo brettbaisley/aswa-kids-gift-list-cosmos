@@ -12,7 +12,7 @@ const EditBook = (props) => {
                         name="title"
                         value={props.selectedBook.title}
                         placeholder="title"
-                        onChange={(e) => props.onChange(e)}
+                        onChange={props.onChange}
                         />
                     </div>
                     <div>
