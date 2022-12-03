@@ -6,9 +6,7 @@ const Books = () => {
 
     const [books, setBooks] = useState([]);
     const [selectedBook, setSelectedBook] = useState(null);
-    const [addingBook, setAddingBook] = useState(false);
-
-    const [title, setTitle] = useState("");
+    const [addingBook] = useState(false);
 
     useEffect(() => {
         let ignore = false;
@@ -43,9 +41,6 @@ const Books = () => {
         let tmpSelectedBook = selectedBook;
         tmpSelectedBook[name] = value;
         setSelectedBook({...tmpSelectedBook});
-
-        // setSelectedBook({...selectedBook, 'title': value})
-
         console.log("I just updated selectedBook state!")
     }
 
