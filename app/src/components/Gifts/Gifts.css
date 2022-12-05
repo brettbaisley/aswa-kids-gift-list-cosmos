@@ -1,0 +1,8 @@
+.gift-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}

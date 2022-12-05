@@ -1,14 +1,16 @@
 import './App.css';
-import Books from './components/Books/Books';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Registry from './components/Registry';
 
 
 
 const App = () => {
   return (
     <>
-      <h1>Books</h1>
-      <div className="header-bar"></div> 
-      <Books />
+      <Header />
+      <Registry />
+      <Footer />  
     </>
   );
 }

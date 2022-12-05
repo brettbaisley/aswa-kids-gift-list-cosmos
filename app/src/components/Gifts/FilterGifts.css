@@ -1,0 +1,10 @@
+.filter-gifts {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.filter-gifts > input,
+.filter-gifts > select {
+    margin-left: 1rem;
+}

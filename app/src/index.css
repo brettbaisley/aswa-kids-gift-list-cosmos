@@ -13,45 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.header-bar {
-  background-color: #0078d7;
-  height: 4px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.books {
+.flex-column {
   display: flex;
-  flex-direction: row;
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-}
-.books li {
-  cursor: pointer;
-  flex: 1;
-  left: 0;
-  background-color: #eee;
-  margin: .5em;
-  padding: .5em;
-  border-radius: 4px;
-  min-width: 200px;
-}
-.books .title {
-  font-size: 1.5rem;
-}
-
-
-
-button.delete-button {
-  float: right;
-  background-color: #d83b01 !important;
-  color: white;
-  padding: 4px;
-}
-
-.selected {
-  background-color: #cfd8dc !important;
-  background-color: #0078d7 !important;
-  color: white;
+  flex-direction: column;
 }
