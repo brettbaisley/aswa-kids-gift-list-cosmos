@@ -1,9 +1,8 @@
 import React from "react";
 import './Gift.css';
-import Modal from '../Modal';
-import EditGift from './EditGift';
+import EditGiftModal from './EditGiftModal';
 
-const Gift = ( {gift} ) => {
+const Gift = ( {gift, handleUpdate} ) => {
 
     const purchasedClass = gift.purchased ? "gift purchased" : "gift";
     return (
@@ -12,9 +11,7 @@ const Gift = ( {gift} ) => {
             <p className="brand">{gift.brand}</p>
             <p className="price">${gift.price}</p>
             <div className="actions">
-                <Modal openText="Edit">
-                    <EditGift gift={gift} />
-                </Modal>
+                <EditGiftModal gift={gift} />
                 <button>Mark Purchased</button>
                 <button>Delete</button>
             </div>

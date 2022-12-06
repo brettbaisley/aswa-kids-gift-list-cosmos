@@ -16,7 +16,7 @@ const Registry = () => {
     return (
         <section className="wrapper">
             <FilterGifts />
-            <Gifts gifts={gifts}/>
+            <Gifts gifts={gifts} handleUpdate={setGifts} />
         </section>
     )
 }

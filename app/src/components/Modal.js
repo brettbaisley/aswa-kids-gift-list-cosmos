@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import './Modal.css';
-
 
 const Modal = ( {openText, children} ) => {
     const [shouldShow, setShouldShow] = useState(false);

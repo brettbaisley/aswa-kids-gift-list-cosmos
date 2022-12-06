@@ -7,7 +7,7 @@ const Gifts = ( {gifts} ) => {
         <ul className="gift-list">
             { gifts && gifts.map( (gift) => {
                 return (
-                    <Gift key={gift._id} gift={gift}/>
+                    <Gift key={gift._id} gift={gift}  />
                 )
             })}
         </ul>
