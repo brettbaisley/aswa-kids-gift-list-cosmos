@@ -12,11 +12,29 @@ const Registry = () => {
     useEffect(() => {
         setGifts(giftsJSON);
     },[]);
+
+    const handlePurchased = (updateGift) => {
+        let newGifts = gifts.map(gift => {
+            if (gift._id === updateGift._id) {
+                return {...gift, purchased: !gift.purchased }
+            } else {
+                return gift;
+            }
+        });
+        setGifts(newGifts);
+    }
+
+    const handleDelete = (deleteGift) => {
+        let newGifts = gifts.filter(gift =>
+            gift._id !== deleteGift._id
+        );
+        setGifts(newGifts);
+    }
     
     return (
         <section className="wrapper">
             <FilterGifts />
-            <Gifts gifts={gifts} handleUpdate={setGifts} />
+            <Gifts gifts={gifts} handlePurchased={handlePurchased} handleDelete={handleDelete} />
         </section>
     )
 }

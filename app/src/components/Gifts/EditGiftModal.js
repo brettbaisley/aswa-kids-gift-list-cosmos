@@ -2,7 +2,6 @@ import React, {useState} from "react";
 
 const EditGift = ( {gift} ) => {
     const [shouldShow, setShouldShow] = useState(false);
-
     return (
         <>
         <button onClick={() => setShouldShow(true)}>Edit</button>
