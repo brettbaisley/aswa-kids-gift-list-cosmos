@@ -8,10 +8,32 @@ import giftsJSON from '../gift_data.json';
 
 const Registry = () => {
     const [gifts, setGifts] = useState(null);
+    const [showPurchased, setShowPurchased] = useState(true);
+    // const [showChild, setShowChild] = useState(false);
 
     useEffect(() => {
-        setGifts(giftsJSON);
-    },[]);
+        // setGifts(giftsJSON);
+
+        let allGifts = giftsJSON;
+        let filteredGifts = [];
+
+        
+        // Filter ShowPurchased
+        if (!showPurchased) {
+            filteredGifts = (allGifts.filter(gift => 
+                gift.purchased === false
+            ));
+            setGifts(filteredGifts);
+        } else {
+            setGifts(allGifts);
+        }
+        
+        
+        //Filter Child
+        
+        // setGifts(filteredGifts);
+
+    },[showPurchased]);
 
     const handlePurchased = (updateGift) => {
         let newGifts = gifts.map(gift => {
@@ -31,10 +53,15 @@ const Registry = () => {
         setGifts(newGifts);
     }
     
+    const handleShowPurchased = () => {
+        console.log("Handling filter toggle");
+        setShowPurchased(!showPurchased);
+    }
+
     return (
         <section className="wrapper">
-            <FilterGifts />
-            <Gifts gifts={gifts} handlePurchased={handlePurchased} handleDelete={handleDelete} />
+            <FilterGifts handleShowPurchased={handleShowPurchased} />
+            <Gifts gifts={gifts} handlePurchased={handlePurchased} handleDelete={handleDelete}/>
         </section>
     )
 }

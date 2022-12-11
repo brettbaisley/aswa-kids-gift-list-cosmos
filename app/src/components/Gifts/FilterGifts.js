@@ -1,12 +1,12 @@
 import React from "react";
 import './FilterGifts.css';
 
-const FilterGifts = () => {
+const FilterGifts = ({handleShowPurchased}) => {
     return (
         <div className="filter-gifts">
             <p>Filter(s):</p>
             <div>
-                <input type="checkbox" name="hidepurchased" id="hidepurchased" />
+                <input type="checkbox" name="hidepurchased" id="hidepurchased" onChange={handleShowPurchased}/>
                 <label htmlFor="hidepurchased">Show Purchased</label>
             <select name="children" id="children">
                 <option value="all">All</option>
