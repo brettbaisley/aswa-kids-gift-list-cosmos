@@ -8,32 +8,13 @@ import giftsJSON from '../gift_data.json';
 
 const Registry = () => {
     const [gifts, setGifts] = useState(null);
-    const [showPurchased, setShowPurchased] = useState(true);
-    // const [showChild, setShowChild] = useState(false);
+    const [hidePurchased, setHidePurchased] = useState(false);
+    const [showChild, setShowChild] = useState("All");
+    
 
     useEffect(() => {
-        // setGifts(giftsJSON);
-
-        let allGifts = giftsJSON;
-        let filteredGifts = [];
-
-        
-        // Filter ShowPurchased
-        if (!showPurchased) {
-            filteredGifts = (allGifts.filter(gift => 
-                gift.purchased === false
-            ));
-            setGifts(filteredGifts);
-        } else {
-            setGifts(allGifts);
-        }
-        
-        
-        //Filter Child
-        
-        // setGifts(filteredGifts);
-
-    },[showPurchased]);
+        setGifts(giftsJSON);
+    },[]);
 
     const handlePurchased = (updateGift) => {
         let newGifts = gifts.map(gift => {
@@ -53,15 +34,20 @@ const Registry = () => {
         setGifts(newGifts);
     }
     
-    const handleShowPurchased = () => {
-        console.log("Handling filter toggle");
-        setShowPurchased(!showPurchased);
+    const handleHidePurchased = () => {
+        console.log("Handling Hide Purchased");
+        setHidePurchased(!hidePurchased);
+    }
+    
+    const handleFilterKids = (kid) => {
+        console.log("Handling filter kids: ", kid);
+        kid === "All" ? setShowChild("All") : setShowChild(kid);
     }
 
     return (
         <section className="wrapper">
-            <FilterGifts handleShowPurchased={handleShowPurchased} />
-            <Gifts gifts={gifts} handlePurchased={handlePurchased} handleDelete={handleDelete}/>
+            <FilterGifts handleHidePurchased={handleHidePurchased} handleFilterKids={handleFilterKids} />
+            <Gifts gifts={gifts} handlePurchased={handlePurchased} handleDelete={handleDelete} hidePurchased={hidePurchased} showChild={showChild}  />
         </section>
     )
 }

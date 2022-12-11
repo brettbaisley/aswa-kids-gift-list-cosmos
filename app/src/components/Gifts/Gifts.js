@@ -3,7 +3,7 @@ import Gift from './Gift';
 import GiftActions from './GiftActions';
 import './Gifts.css';
 
-const Gifts = ( {gifts, handlePurchased, handleDelete} ) => {
+const Gifts = ( {gifts, handlePurchased, handleDelete, hidePurchased, showChild} ) => {
 
     if (!gifts) return(<p>No Gifts to Display.</p>)
 
@@ -11,12 +11,19 @@ const Gifts = ( {gifts, handlePurchased, handleDelete} ) => {
         <ul className="gift-list">
             { gifts.map( (gift) => {
                 const purchasedClass = gift.purchased ? "gift purchased" : "gift";
-                return (
-                    <li key={gift._id} className={purchasedClass}>
-                        <Gift gift={gift} />
-                        <GiftActions gift={gift} handlePurchased={handlePurchased} handleDelete={handleDelete} />
-                    </li>
-                )
+
+                if (hidePurchased && gift.purchased) {
+                        return (null)
+                } else if (showChild !== "All" && !gift.kids.includes(showChild)) {
+                    return (null)
+                } else {
+                    return (
+                        <li key={gift._id} className={purchasedClass}>
+                            <Gift gift={gift} />
+                            <GiftActions gift={gift} handlePurchased={handlePurchased} handleDelete={handleDelete} />
+                        </li>
+                    )
+                }
             })}
         </ul>
     )

@@ -5,6 +5,7 @@
         "brand": "Apple",
         "price": 699.99,
         "purchased": true,
+        "kids": ["Mateo", "Lucas"],
         "created": "2022-11-26T13:06:09.604Z",
         "__v": 0
     },
@@ -14,6 +15,7 @@
         "brand": "Nintendo",
         "price": 299.99,
         "purchased": false,
+        "kids": ["Mateo", "Lucas"],
         "created": "2022-11-26T13:06:09.604Z",
         "__v": 0
     },
@@ -23,6 +25,7 @@
         "brand": "Hot Wheels",
         "price": 99.99,
         "purchased": false,
+        "kids": ["Mateo", "Lucas"],
         "created": "2022-11-26T13:06:09.604Z",
         "__v": 0
     },
@@ -32,6 +35,7 @@
         "brand": "Disney",
         "price": 9.99,
         "purchased": false,
+        "kids": ["Lucas"],
         "created": "2022-11-26T13:06:09.604Z",
         "__v": 0
     },
@@ -41,6 +45,7 @@
         "brand": "Generic",
         "price": 1250750.99,
         "purchased": false,
+        "kids": ["Mateo"],
         "created": "2022-11-26T13:06:09.604Z",
         "__v": 0
     }
