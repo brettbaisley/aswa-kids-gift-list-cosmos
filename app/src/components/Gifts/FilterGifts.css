@@ -1,10 +1,22 @@
 .filter-gifts {
+    border-bottom: 1px solid black;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: .5rem;
 }
 
-.filter-gifts > input,
-.filter-gifts > select {
+.filter-gifts div,
+.filter-gifts select {
     margin-left: 1rem;
+}
+
+
+
+
+@media (min-width: 500px) {
+    .filter-gifts {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
 }

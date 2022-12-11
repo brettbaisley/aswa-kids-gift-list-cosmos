@@ -4,7 +4,8 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
-    min-width: 200px;
+    min-width: 250px;
+    max-width: 350px;
 }
 
 
@@ -19,7 +20,8 @@
 }
 
 .price {
-
+    margin-top: 1rem;
+    margin-bottom: .5rem;
 }
 
 .purchased,

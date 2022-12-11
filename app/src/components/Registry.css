@@ -1,6 +1,16 @@
 .wrapper {
     background-color: rgba(225, 225, 225, 0.75);
-    margin-left: 6rem;
-    margin-right: 6rem;
-    padding: 2rem;
+    padding: .5rem; 
 }
+
+
+
+@media (min-width: 700px) {
+    .wrapper {
+        background-color: rgba(225, 225, 225, 0.75);
+        margin-left: 6rem;
+        margin-right: 6rem;
+        padding: 2rem;
+    }
+}
+  
