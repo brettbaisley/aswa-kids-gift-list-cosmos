@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import "./Registry.css";
 import FilterGifts from "./Gifts/FilterGifts";
 import Gifts from "./Gifts/Gifts";
@@ -10,7 +10,11 @@ const Registry = () => {
     const [gifts, setGifts] = useState(null);
     const [hidePurchased, setHidePurchased] = useState(false);
     const [showChild, setShowChild] = useState("All");
-    
+
+    const titleInput = useRef(null);
+    const brandInput = useRef(null);
+    const priceInput = useRef("0.00");
+
 
     useEffect(() => {
         setGifts(giftsJSON);
@@ -44,10 +48,28 @@ const Registry = () => {
         kid === "All" ? setShowChild("All") : setShowChild(kid);
     }
 
+    const handleEditForm = (event) => {
+        event.preventDefault();
+        console.log("Handling submit of edit form")
+        console.log(`Title: ${titleInput.current.value}`)
+        console.log(`Brand: ${brandInput.current.value}`)
+        console.log(`Price: ${priceInput.current.value}`)
+
+    }
+
     return (
         <section className="wrapper">
             <FilterGifts handleHidePurchased={handleHidePurchased} handleFilterKids={handleFilterKids} />
-            <Gifts gifts={gifts} handlePurchased={handlePurchased} handleDelete={handleDelete} hidePurchased={hidePurchased} showChild={showChild}  />
+            <Gifts gifts={gifts} 
+                handlePurchased={handlePurchased} 
+                handleDelete={handleDelete} 
+                hidePurchased={hidePurchased} 
+                showChild={showChild} 
+                submitEditForm={handleEditForm}
+                titleInput={titleInput}
+                brandInput={brandInput}
+                priceInput={priceInput}
+            />
         </section>
     )
 }
