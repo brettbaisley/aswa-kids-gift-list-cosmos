@@ -11,7 +11,7 @@ const EditGift = ( {gift, submitEditForm, titleInput, brandInput, priceInput} ) 
                     <div className="modal-body" onClick={e => e.stopPropagation()}>
                         <div className="flex-column">
                             <h2>Edit Item</h2>
-                            <form onSubmit={submitEditForm}>
+                            <form className="flex-column" onSubmit={submitEditForm}>
                                 <label htmlFor="title">Title</label>
                                 <input ref={titleInput} type="text" name="title" id="title" defaultValue={gift.title}/>
 
