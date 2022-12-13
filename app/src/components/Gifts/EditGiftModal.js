@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import './EditGiftModal.css';
 
 const EditGift = ( {gift, submitEditForm, titleInput, brandInput, priceInput} ) => {
     const [shouldShow, setShouldShow] = useState(false);

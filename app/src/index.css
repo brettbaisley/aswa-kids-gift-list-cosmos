@@ -18,6 +18,14 @@ body {
   flex-direction: column;
 }
 
+h1, h2 {
+  margin-bottom: .75rem;
+}
+
+input {
+  margin-bottom: .75rem;
+}
+
 .modal-background {
   position: fixed;
   z-index: 1;
@@ -37,3 +45,4 @@ body {
   padding: 20px;
   max-width: 50%;
 }
+
