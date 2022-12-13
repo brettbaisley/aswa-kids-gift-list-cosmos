@@ -1,7 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 
 const EditGift = ( {gift} ) => {
     const [shouldShow, setShouldShow] = useState(false);
+    const title = useRef("");
+    const brand = useRef("");
+    const price = useRef("");
     return (
         <>
         <button onClick={() => setShouldShow(true)}>Edit</button>
@@ -10,19 +13,21 @@ const EditGift = ( {gift} ) => {
                     <div className="modal-body" onClick={e => e.stopPropagation()}>
                         <div className="flex-column">
                             <h2>Edit Item</h2>
-                            <label htmlFor="title">Title</label>
-                            <input type="text" name="title" id="title" value={gift.title} />
+                            <form onSubmit={submitForm}>
+                                <label htmlFor="title">Title</label>
+                                <input ref={title} type="text" name="title" id="title" defaultValue={gift.title}/>
 
-                            <label htmlFor="brand">Brand</label>
-                            <input type="text" name="brand" id="brand" value={gift.brand} />
+                                <label htmlFor="brand">Brand</label>
+                                <input ref={brand} type="text" name="brand" id="brand" defaultValue={gift.brand} />
 
-                            <label htmlFor="price">Price</label>
-                            <input type="text" name="price" id="price" value={gift.price} />
+                                <label htmlFor="price">Price</label>
+                                <input ref={price} type="text" name="price" id="price" defaultValue={gift.price} />
 
-                            <div className="actions">
-                                <button onClick={() => setShouldShow(false)}>Cancel</button>
-                                <button>Save</button>
-                            </div>
+                                <div className="actions">
+                                    <button onClick={() => setShouldShow(false)}>Cancel</button>
+                                    <button>Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
