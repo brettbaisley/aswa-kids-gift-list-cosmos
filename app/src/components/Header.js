@@ -5,7 +5,7 @@ import './Header.css';
 
 const Header = () => {
     const [userInfo, setUserInfo] = useState();
-    const providers = ['twitter', 'github', 'aad'];
+    const providers = ['github', 'aad'];
     const redirect = window.location.pathname;
 
     useEffect( () => {
@@ -29,26 +29,24 @@ const Header = () => {
     return (
         <header>
             <h1>Gifts</h1>
-            <div className="menu-list auth">
-                {!userInfo &&
-                providers.map((provider) => (
-                    <a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>{provider}&nbsp;</a>
-                ))}
-                {userInfo && <a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}
+            <div className="auth-list">
+                <p>Log in:</p>
+                <ul>
+                {
+                    !userInfo &&
+                        providers.map((provider) => (
+                            <li key={provider}><a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>{provider}</a></li>
+                        ))
+                }
+                </ul>
+                {
+                    userInfo && (
+                        <div className="user">
+                            <p>Logged in as "{userInfo && userInfo.userDetails}" (via {userInfo && userInfo.identityProvider}) -- {<a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}</p>
+                        </div>
+                    )
+                }
             </div>
-
-
-            {
-            userInfo && (
-                <div>
-                <div className="user">
-                    <p>Welcome</p>
-                    <p>{userInfo && userInfo.userDetails}</p>
-                    <p>{userInfo && userInfo.identityProvider}</p>
-                </div>
-                </div>
-            )
-            }
 
 
         </header>
