@@ -13,7 +13,7 @@ const Header = () => {
         (async () => {
             setUserInfo(await getUserInfo() );
         })();
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const getUserInfo = async () => {
         try {
