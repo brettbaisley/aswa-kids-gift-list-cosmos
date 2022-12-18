@@ -1,17 +1,20 @@
-import React from "react";
+import React, {useContext} from "react";
 import './GiftActions.css';
 import EditGiftModal from './EditGiftModal';
+import { AuthContext } from "../../context/AuthContext";
+
 
 const GiftActions = ( {gift, handlePurchased, handleDelete, submitEditForm, titleInput, brandInput, priceInput} ) => {
+    const [userInfo, setUserInfo] = useContext(AuthContext);
     const purchaseButtonText = (!gift.purchased) ? "Purchase" : "Unpurchase";
     return (
         <div className="actions">
-            <EditGiftModal gift={gift} submitEditForm={submitEditForm} 
+            {userInfo && <EditGiftModal gift={gift} submitEditForm={submitEditForm} 
             titleInput={titleInput}
                 brandInput={brandInput}
-                priceInput={priceInput}/>
+                priceInput={priceInput}/>}
+            {userInfo && <button onClick={() => handleDelete(gift)}>Delete</button>}
             <button onClick={() => handlePurchased(gift)}>{purchaseButtonText}</button>
-            <button onClick={() => handleDelete(gift)}>Delete</button>
         </div>
     )
 }

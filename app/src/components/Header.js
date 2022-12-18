@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import './Header.css';
+import { AuthContext } from "../context/AuthContext";
 
 
 
 const Header = () => {
-    const [userInfo, setUserInfo] = useState();
+    const [userInfo, setUserInfo] = useContext(AuthContext);
     const providers = ['github', 'aad'];
     const redirect = window.location.pathname;
 
