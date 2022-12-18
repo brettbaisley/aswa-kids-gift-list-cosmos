@@ -30,25 +30,24 @@ const Header = () => {
         <header>
             <h1>Gifts</h1>
             <div className="auth-list">
-                <p>Log in:</p>
-                <ul>
                 {
-                    !userInfo &&
-                        providers.map((provider) => (
-                            <li key={provider}><a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>{provider}</a></li>
-                        ))
-                }
-                </ul>
-                {
-                    userInfo && (
+                    !userInfo ? (
+                        <>
+                        <p>Log in:</p>
+                        <ul>
+                        {
+                            providers.map((provider) => (
+                                <li key={provider}><a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>{provider}</a></li>
+                            ))
+                        }
+                        </ul>
+                        </> ) : (
                         <div className="user">
-                            <p>Logged in as "{userInfo && userInfo.userDetails}" (via {userInfo && userInfo.identityProvider}) -- {<a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}</p>
+                            <p>{userInfo && userInfo.userDetails} (via {userInfo && userInfo.identityProvider}) -- {<a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}</p>
                         </div>
-                    )
+                    )   
                 }
             </div>
-
-
         </header>
     )
 }
