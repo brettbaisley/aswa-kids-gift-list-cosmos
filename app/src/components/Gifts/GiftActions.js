@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 
 const GiftActions = ( {gift, handlePurchased, handleDelete, submitEditForm, titleInput, brandInput, priceInput} ) => {
-    const [userInfo, setUserInfo] = useContext(AuthContext);
+    const [userInfo] = useContext(AuthContext);
     const purchaseButtonText = (!gift.purchased) ? "Purchase" : "Unpurchase";
     return (
         <div className="actions">
