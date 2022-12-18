@@ -13,8 +13,6 @@ export const AuthContextProvider = ( {children} ) => {
 }
 
 export const useAuthContext = () => {
-    // const [ userInfo, setUserInfo ] = useContext(AuthContext);
-    // return [ userInfo, setUserInfo ];
     const context = useContext(AuthContext);
 
     if (context === undefined) {
