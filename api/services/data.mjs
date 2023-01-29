@@ -51,4 +51,4 @@ const gifts = [
     }
 ];
 
-module.exports = gifts;
+export default gifts;
