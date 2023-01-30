@@ -1,4 +1,4 @@
-import gifts from './data.mjs';
+import gifts from '../dal/data.mjs';
 
 class GiftService {
 
