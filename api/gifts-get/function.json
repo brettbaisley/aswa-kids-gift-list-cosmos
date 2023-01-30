@@ -7,7 +7,7 @@
       "direction": "in",
       "name": "req",
       "methods": [ "get" ],
-      "route": "gifts/{id}"
+      "route": "gifts"
     },
     {
       "type": "http",
