@@ -19,11 +19,9 @@ export const createGiftDB = async (data) => {
 }
 
 export const deleteGiftDB = async (id) => {
-    return await GiftModel.deleteOne({_id: id}).exec();
+    return await GiftModel.deleteOne(id).exec();
 }
 
 export const updateGiftDB = async (id, data) => {
-    var giftToUpdate = await GiftModel.findById(id).read(ReadPreference.NEAREST).exec();
-    giftToUpdate = {...data};
-    return await giftToUpdate.save();
+    return await GiftModel.findByIdAndUpdate(id, data, {new: true}).exec()
 }
