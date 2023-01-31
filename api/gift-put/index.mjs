@@ -3,25 +3,17 @@
 import GiftService from '../services/gift.service.mjs';
 
 export default async (context, req) => {
-    const id = context.req.params.id;
-
-    if (!id) {
-        context.res = {
-            status: 500,
-            body: `ERROR: ID not specified`
-        }
-    }
-    
     try {
-        const data = await GiftService.getGift(id);
+        const gift = await GiftService.updateGift(context.req.params.id, context.req.body);
         context.res = {
-            body: data,
+            body: gift,
             contextType: 'application/json'
         };
+    
     } catch (error) {
         context.res = {
             status: 500,
-            body: `ERROR: Unable to GET gifts: ${error}`
+            body: `ERROR: Unable to POST gift: ${error}`
         }
     }
 }

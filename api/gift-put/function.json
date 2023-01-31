@@ -1,12 +1,13 @@
 {
+  "disabled": false,
   "bindings": [
     {
       "authLevel": "anonymous",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "methods": [ "get", "post", "put", "delete" ],
-      "route": "books/{bookId?}"
+      "methods": [ "put" ],
+      "route": "gifts/{id}"
     },
     {
       "type": "http",
