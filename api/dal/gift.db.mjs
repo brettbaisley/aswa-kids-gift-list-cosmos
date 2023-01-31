@@ -19,7 +19,7 @@ export const createGiftDB = async (data) => {
 }
 
 export const deleteGiftDB = async (id) => {
-    return await GiftModel.deleteOne(id).exec();
+    return await GiftModel.deleteOne({id}).exec();
 }
 
 export const updateGiftDB = async (id, data) => {
