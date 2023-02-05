@@ -3,7 +3,7 @@ import "./Registry.css";
 import FilterGifts from "./Gifts/FilterGifts";
 import Gifts from "./Gifts/Gifts";
 
-import { fetchGiftsJSON } from "../services/GiftService.mjs";
+import { fetchGiftsDB, updateGiftDB, deleteGiftDB } from "../services/GiftService.mjs";
 
 
 const Registry = () => {
@@ -17,12 +17,14 @@ const Registry = () => {
 
 
     useEffect(() => {
-        fetchGiftsJSON().then(gifts => setGifts(gifts))
+        fetchGiftsDB().then(gifts => setGifts(gifts))
     },[]);
 
     const handlePurchased = (updateGift) => {
         let newGifts = gifts.map(gift => {
             if (gift._id === updateGift._id) {
+                console.log(`DEBUG: ${JSON.stringify(gift)}`);
+                updateGiftDB(gift._id, {...gift, purchased: !gift.purchased } )
                 return {...gift, purchased: !gift.purchased }
             } else {
                 return gift;
@@ -32,6 +34,8 @@ const Registry = () => {
     }
 
     const handleDelete = (deleteGift) => {
+        deleteGiftDB(deleteGift._id)
+
         let newGifts = gifts.filter(gift =>
             gift._id !== deleteGift._id
         );
