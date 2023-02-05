@@ -3,7 +3,7 @@ import "./Registry.css";
 import FilterGifts from "./Gifts/FilterGifts";
 import Gifts from "./Gifts/Gifts";
 
-import giftsJSON from '../gift_data.json';
+import { fetchGiftsJSON } from "../services/GiftService.mjs";
 
 
 const Registry = () => {
@@ -17,7 +17,7 @@ const Registry = () => {
 
 
     useEffect(() => {
-        setGifts(giftsJSON);
+        fetchGiftsJSON().then(gifts => setGifts(gifts))
     },[]);
 
     const handlePurchased = (updateGift) => {
