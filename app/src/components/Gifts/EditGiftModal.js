@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './EditGiftModal.css';
 
-const EditGift = ( {gift, submitEditForm, titleInput, brandInput, priceInput} ) => {
+const EditGift = ( {gift, submitEditForm, idInput, titleInput, brandInput, priceInput} ) => {
     const [shouldShow, setShouldShow] = useState(false);
 
     return (
@@ -13,6 +13,8 @@ const EditGift = ( {gift, submitEditForm, titleInput, brandInput, priceInput} ) 
                         <div className="flex-column">
                             <h2>Edit Item</h2>
                             <form className="flex-column" onSubmit={submitEditForm}>
+                                <input ref={idInput} type="hidden" name="giftId" id="giftId" defaultValue={gift._id}/>
+
                                 <label htmlFor="title">Title</label>
                                 <input ref={titleInput} type="text" name="title" id="title" defaultValue={gift.title}/>
 

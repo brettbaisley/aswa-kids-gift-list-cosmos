@@ -11,6 +11,7 @@ const Registry = () => {
     const [hidePurchased, setHidePurchased] = useState(false);
     const [showChild, setShowChild] = useState("All");
 
+    const idInput = useRef(null);
     const titleInput = useRef(null);
     const brandInput = useRef(null);
     const priceInput = useRef("0.00");
@@ -55,25 +56,29 @@ const Registry = () => {
     const handleEditForm = (event) => {
         event.preventDefault();
         console.log("Handling submit of edit form")
+        console.log(`ID: ${idInput.current.value}`)
         console.log(`Title: ${titleInput.current.value}`)
         console.log(`Brand: ${brandInput.current.value}`)
         console.log(`Price: ${priceInput.current.value}`)
-
+        updateGiftDB(idInput.current.value, { title: titleInput.current.value, brand: brandInput.current.value, price: priceInput.current.value})
     }
 
     return (
         <section className="wrapper">
             <FilterGifts handleHidePurchased={handleHidePurchased} handleFilterKids={handleFilterKids} />
-            <Gifts gifts={gifts} 
-                handlePurchased={handlePurchased} 
-                handleDelete={handleDelete} 
-                hidePurchased={hidePurchased} 
-                showChild={showChild} 
-                submitEditForm={handleEditForm}
-                titleInput={titleInput}
-                brandInput={brandInput}
-                priceInput={priceInput}
-            />
+            
+            { gifts ? (<Gifts gifts={gifts} 
+                    handlePurchased={handlePurchased} 
+                    handleDelete={handleDelete} 
+                    hidePurchased={hidePurchased} 
+                    showChild={showChild} 
+                    submitEditForm={handleEditForm}
+                    idInput={idInput}
+                    titleInput={titleInput}
+                    brandInput={brandInput}
+                    priceInput={priceInput}
+                />) : (<p>Loading...</p>)
+            }
         </section>
     )
 }
