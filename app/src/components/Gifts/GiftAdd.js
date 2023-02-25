@@ -6,7 +6,7 @@ import { createGiftDB } from "../../services/GiftService.mjs";
 
 const AddEditGiftForm = ( {toggleForm}) => {
     const [formValues, setFormValues] = useState({ title: "", brand: "", price: "0.00"});
-    const [error, setError] = useState(null);
+    const [error, setError] = useState();
     const [status, setStatus] = useState('typing');
 
     const handleChange = (event) => {
@@ -50,6 +50,8 @@ const AddEditGiftForm = ( {toggleForm}) => {
                         <button onClick={() => toggleForm(false)}>Cancel</button>
                         <button disabled={formValues.title.length === 0 || formValues.brand.length === 0 || formValues.price.length === 0 || status === 'submitting'}>Save</button>
                     </div>
+
+                    { error && <p className='message error'>Error: {error}</p> }
 
                 </form>
             </div>

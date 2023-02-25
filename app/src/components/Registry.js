@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import "./Registry.css";
 import { fetchGiftsDB, updateGiftDB, deleteGiftDB } from "../services/GiftService.mjs";
 import FilterGifts from "./Gifts/FilterGifts";

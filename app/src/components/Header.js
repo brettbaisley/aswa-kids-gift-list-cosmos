@@ -34,7 +34,7 @@ const Header = () => {
                 {
                     !userInfo ? (
                         <>
-                        <p>Log in:</p>
+                        <p>Log using:</p>
                         <ul>
                         {
                             providers.map((provider) => (
@@ -44,7 +44,7 @@ const Header = () => {
                         </ul>
                         </> ) : (
                         <div className="user">
-                            <p>{userInfo && userInfo.userDetails} (via {userInfo && userInfo.identityProvider}) -- {<a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}</p>
+                            <p>{userInfo.userDetails} (via {userInfo.identityProvider}) -- {<a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}</p>
                         </div>
                     )   
                 }
