@@ -10,9 +10,15 @@ export const fetchGiftDB = async (id) => {
     return gifts;
 }
 
-export const createGiftDB = async () => {
-    const data = await fetch(`/api/gifts`, { method: 'POST' });
+export const createGiftDB = async (gift) => {
+    const data = await fetch(`/api/gifts`, { 
+        method: 'POST', 
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify(gift)
+    });
     const gifts = await data.json();
+
+
     return gifts;
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import './GiftActions.css';
-import EditGiftModal from './EditGiftModal';
+import EditGiftModal from './GiftEdit';
 import { useAuthContext } from "../../context/AuthContext";
 
 
