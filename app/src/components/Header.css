@@ -28,6 +28,7 @@ header {
   border-radius: 5px;
   cursor: pointer;
   height: 36px;
+  margin-left: .5rem;
 }
 
 .btn-loginout:hover {
