@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import './Header.css';
 import { useAuthContext } from "../context/AuthContext";
-
+import { Link } from "react-router-dom";
 
 
 const Header = () => {
     const [userInfo, setUserInfo] = useAuthContext();
-    const providers = ['github', 'aad'];
+    
     const redirect = window.location.pathname;
 
     useEffect( () => {
@@ -33,18 +33,10 @@ const Header = () => {
             <div className="auth-list">
                 {
                     !userInfo ? (
-                        <>
-                        <p>Log using:</p>
-                        <ul>
-                        {
-                            providers.map((provider) => (
-                                <li key={provider}><a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>{provider}</a></li>
-                            ))
-                        }
-                        </ul>
-                        </> ) : (
+                        <Link className="btn-loginout" to="/login">Login</Link>
+                    ) : (
                         <div className="user">
-                            <p>{userInfo.userDetails} (via {userInfo.identityProvider}) -- {<a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}</p>
+                            <p>{userInfo.userDetails} -- {<a className="btn-loginout" href={`/.auth/logout?post_logout_redirect_uri=/`}>Logout</a>}</p>
                         </div>
                     )   
                 }

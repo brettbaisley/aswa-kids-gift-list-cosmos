@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-        <p>footer placeholder</p>
+        <footer>&copy; {new Date().getFullYear()} / Brett Baisley</footer>
     )
 }
 

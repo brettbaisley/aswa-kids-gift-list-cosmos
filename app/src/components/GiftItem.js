@@ -1,7 +1,6 @@
-import React from "react";
-import './Gift.css';
+import './GiftItem.css';
 
-const Gift = ( {gift} ) => {
+const GiftItem = ( {gift} ) => {
     return (
         <>
             <p className="title">{gift.title}</p>
@@ -11,4 +10,4 @@ const Gift = ( {gift} ) => {
     )
 }
 
-export default Gift;
+export default GiftItem;

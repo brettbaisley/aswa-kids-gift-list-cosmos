@@ -4,8 +4,8 @@ import './GiftAdd.css';
 import { createGiftDB } from "../../services/GiftService.mjs";
 
 
-const AddEditGiftForm = ( {toggleForm}) => {
-    const [formValues, setFormValues] = useState({ title: "", brand: "", price: "0.00"});
+const AddEditGiftForm = ( {handleAdd, toggleForm}) => {
+    const [formValues, setFormValues] = useState({ "title": "", "brand": "", "price": "0.00"});
     const [error, setError] = useState();
     const [status, setStatus] = useState('typing');
 
@@ -18,7 +18,10 @@ const AddEditGiftForm = ( {toggleForm}) => {
         e.preventDefault();
         setStatus('submitting');
         try {
-            await createGiftDB(formValues);
+            console.log(`HELLO: form values: ${JSON.stringify(formValues)}`);
+            const data = await createGiftDB(formValues);
+            console.log(`DEBUG: ${data}`)
+            handleAdd(data);
             setStatus('success');
         } catch (err) {
             setStatus('typing');
