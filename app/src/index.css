@@ -18,6 +18,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
+.success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid#c3e6cb;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
