@@ -19,6 +19,7 @@ const Registry = () => {
         fetchGiftsDB()
             .then(gifts => setAllGifts(gifts))
     },[]);
+    
 
     // const handlePurchased = (updateGift) => {
     //     let newGifts = gifts.map(gift => {
@@ -76,7 +77,7 @@ const Registry = () => {
                 sortBy={sortBy}
                 setSortBy={setSortBy}
             />
-            <GiftGrid giftList={allGifts} />
+            <GiftGrid giftList={allGifts} displayType={displayType} />
         </main>
     )
 }
