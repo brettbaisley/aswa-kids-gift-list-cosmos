@@ -14,22 +14,16 @@ const EditPage = () => {
 
     useEffect(() => {
         fetchGiftDB(id)
-            .then(gift => setGift(gift))
+            .then(gift => {
+                setGift(gift);
+                setSelectedKids(gift.kids);
+            })
     },[id]);
 
     const handleChangeInput = (e) => {
         setGift( {...gift, [e.target.name]: e.target.value });
     }
 
-    // const handleCheckboxChange = (kid) => {
-    //     let newArray = [...gift.kids, e.target.id];
-    //     if (gift.kids.includes(e.target.id)) {
-    //       newArray = newArray.filter(kid => kid !== e.target.id);
-    //     } 
-    //     setGift( {...gift, kids: newArray} );
-    // };
-
-    // TODO: Need to have checkboxes set based on Database value, right now they load empty
     const handleCheckboxChange = (kid) => {
         setSelectedKids(selectedKids => {
             if (selectedKids.includes(kid)) {
@@ -39,6 +33,11 @@ const EditPage = () => {
             }
         });
     }
+
+    // TODO: FIX THIS WARNING:  40:8:  React Hook useEffect has a missing dependency: 'gift'. Either include it or remove the dependency array. You can also do a functional update 'setGift(g => ...)' if you only need 'gift' in the 'setGift' call  react-hooks/exhaustive-deps
+    useEffect(() => {
+        setGift( {...gift, kids: selectedKids});
+    }, [selectedKids]);
 
 
     const handleSubmit = async (e) => {
