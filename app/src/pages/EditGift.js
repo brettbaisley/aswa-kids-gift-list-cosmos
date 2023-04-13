@@ -3,8 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import { fetchGiftDB, updateGiftDB } from '../services/GiftService.mjs';
 import "./EditGift.css";
 
-const EditPage = ({toggleMateoSelected, toggleLucasSelected}) => {
-    const [gift, setGift] = useState({title: "", brand: "", price: "", kids: ['Mateo', 'Lucas']});
+const EditPage = () => {
+
+    const [selectedKids, setSelectedKids] = useState([]);
+    const kid_options = ['Mateo', 'Lucas'];
+
+    const [gift, setGift] = useState({title: "", brand: "", price: "", kids: []});
     const [displayMsg, setDisplayMsg] = useState();
     let { id } = useParams();
 
@@ -17,13 +21,25 @@ const EditPage = ({toggleMateoSelected, toggleLucasSelected}) => {
         setGift( {...gift, [e.target.name]: e.target.value });
     }
 
-    const handleCheckboxChange = (e) => {
-        let newArray = [...gift.kids, e.target.id];
-        if (gift.kids.includes(e.target.id)) {
-          newArray = newArray.filter(kid => kid !== e.target.id);
-        } 
-        setGift( {...gift, kids: newArray} );
-    };
+    // const handleCheckboxChange = (kid) => {
+    //     let newArray = [...gift.kids, e.target.id];
+    //     if (gift.kids.includes(e.target.id)) {
+    //       newArray = newArray.filter(kid => kid !== e.target.id);
+    //     } 
+    //     setGift( {...gift, kids: newArray} );
+    // };
+
+    // TODO: Need to have checkboxes set based on Database value, right now they load empty
+    const handleCheckboxChange = (kid) => {
+        setSelectedKids(selectedKids => {
+            if (selectedKids.includes(kid)) {
+                return selectedKids.filter(k => k !== kid);
+            } else {
+                return [...selectedKids, kid];
+            }
+        });
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,8 +71,15 @@ const EditPage = ({toggleMateoSelected, toggleLucasSelected}) => {
 
             <p>Kid</p>
             <div>
-                <input type="checkbox" name="Mateo" id="Mateo" value="Mateo" checked={gift.kids.includes('Mateo')} onChange={handleCheckboxChange}></input>Mateo
-                <input type="checkbox" name="Lucas" id="Lucas" value="Lucas" checked={gift.kids.includes('Lucas')} onChange={handleCheckboxChange}></input>Lucas
+                {kid_options.map(kid => (
+                    <label key={kid}>{kid}
+                        <input type="checkbox"
+                            value={kid}
+                            checked={selectedKids.includes(kid)}
+                            onChange={() => handleCheckboxChange(kid)}
+                        />
+                    </label>
+                ))}
             </div>
 
             <div className="form-buttons">
