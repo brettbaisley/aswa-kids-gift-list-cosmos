@@ -3,8 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { fetchGiftDB, updateGiftDB } from '../services/GiftService.mjs';
 import "./EditGift.css";
 
-const EditPage = () => {
-    const [gift, setGift] = useState({title: "", brand: "", price: ""});
+const EditPage = ({toggleMateoSelected, toggleLucasSelected}) => {
+    const [gift, setGift] = useState({title: "", brand: "", price: "", kids: ['Mateo', 'Lucas']});
     const [displayMsg, setDisplayMsg] = useState();
     let { id } = useParams();
 
@@ -16,6 +16,14 @@ const EditPage = () => {
     const handleChangeInput = (e) => {
         setGift( {...gift, [e.target.name]: e.target.value });
     }
+
+    const handleCheckboxChange = (e) => {
+        let newArray = [...gift.kids, e.target.id];
+        if (gift.kids.includes(e.target.id)) {
+          newArray = newArray.filter(kid => kid !== e.target.id);
+        } 
+        setGift( {...gift, kids: newArray} );
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,6 +52,12 @@ const EditPage = () => {
 
             <label htmlFor="price">Price</label>
             <input type="text" name="price" id="price" value={gift.price} onChange={handleChangeInput}></input>
+
+            <p>Kid</p>
+            <div>
+                <input type="checkbox" name="Mateo" id="Mateo" value="Mateo" checked={gift.kids.includes('Mateo')} onChange={handleCheckboxChange}></input>Mateo
+                <input type="checkbox" name="Lucas" id="Lucas" value="Lucas" checked={gift.kids.includes('Lucas')} onChange={handleCheckboxChange}></input>Lucas
+            </div>
 
             <div className="form-buttons">
                 <Link to="/">Back</Link>

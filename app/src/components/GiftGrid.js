@@ -12,6 +12,8 @@ const GiftGrid = ({giftList, displayType}) => {
     
     const ul_className = displayType === 'list' ? "gifts gifts-list" : "gifts gifts-grid";
 
+    // const filteredGiftList = giftList.filter(gift => {})
+
 
     return (
         <ul className={ul_className}>

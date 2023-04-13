@@ -77,7 +77,14 @@ const Registry = () => {
                 sortBy={sortBy}
                 setSortBy={setSortBy}
             />
-            <GiftGrid giftList={allGifts} displayType={displayType} />
+            <GiftGrid 
+                giftList={allGifts} 
+                displayType={displayType} 
+                mateoSelected={mateoSelected}
+                lucasSelected={lucasSelected}
+                toggleMateoSelected={setMateoSelected}
+                toggleLucasSelected={setLucasSelected}
+            />
         </main>
     )
 }
