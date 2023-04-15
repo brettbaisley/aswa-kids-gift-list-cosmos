@@ -8,7 +8,7 @@ const EditPage = () => {
     const [selectedKids, setSelectedKids] = useState([]);
     const kid_options = ['Mateo', 'Lucas'];
 
-    const [gift, setGift] = useState({title: "", brand: "", price: "", kids: []});
+    const [gift, setGift] = useState({title: "", brand: "", price: "", purchased: false, kids: []});
     const [displayMsg, setDisplayMsg] = useState();
     let { id } = useParams();
 
@@ -22,6 +22,10 @@ const EditPage = () => {
 
     const handleChangeInput = (e) => {
         setGift( {...gift, [e.target.name]: e.target.value });
+    }
+
+    const handleToggleTrueFalse = (e) => {
+        setGift( {...gift, purchased: e.target.checked });
     }
 
     const handleCheckboxChange = (kid) => {
@@ -71,14 +75,23 @@ const EditPage = () => {
             <p>Kid</p>
             <div>
                 {kid_options.map(kid => (
-                    <label key={kid}>{kid}
-                        <input type="checkbox"
+                    <span key={kid}>
+                        <input 
+                            type="checkbox"
+                            id={kid}
+                            name={kid}
                             value={kid}
                             checked={selectedKids.includes(kid)}
                             onChange={() => handleCheckboxChange(kid)}
-                        />
-                    </label>
+                            />
+                        <label htmlFor={kid}>{kid}</label>
+                    </span>
                 ))}
+            </div>
+
+            <div>
+                <input type="checkbox" name="purchased" id="purchased" checked={gift.purchased} onChange={handleToggleTrueFalse}></input>
+                <label htmlFor="purchased">Purchased</label>
             </div>
 
             <div className="form-buttons">

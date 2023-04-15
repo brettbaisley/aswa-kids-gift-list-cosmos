@@ -1,14 +1,28 @@
 import "./GiftFilters.css";
 
-const GiftFilters = ({ mateoSelected, lucasSelected, hidePurchased, toggleMateo, toggleLucas, toggleHidePurchased}) => { 
+const GiftFilters = ({ filterKids, setFilterKids, hidePurchased, toggleHidePurchased}) => { 
+    const kidsList = ["Mateo", "Lucas"];
     
 
     return (
         <div className="filters">
             <h2>Kids</h2>
             <ul>
-                <li><input type="checkbox" id="mateo" name="mateo" checked={mateoSelected} onChange={() => toggleMateo(!mateoSelected)} /><label htmlFor="mateo">Mateo</label></li>
-                <li><input type="checkbox" id="lucas" name="lucas" checked={lucasSelected} onChange={() => toggleLucas(!lucasSelected)} /><label htmlFor="lucas">Lucas</label></li>
+                { 
+                    kidsList.map(kid => {
+                        return (
+                            <li key={kid}>
+                                <input type="checkbox" 
+                                    id={kid} 
+                                    name={kid} 
+                                    checked={filterKids.includes(kid)} 
+                                    onChange={() => setFilterKids(filterKids.includes(kid) ? filterKids.filter(k => k !== kid) : [...filterKids, kid])} 
+                                />
+                                <label htmlFor={kid}>{kid}</label>
+                            </li>
+                        )
+                    })
+                }
             </ul>
             <h2>Status</h2>
             <ul>
