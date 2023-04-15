@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./Registry.css";
-import { fetchGiftsDB, updateGiftDB, deleteGiftDB } from "../services/GiftService.mjs";
+import { fetchGiftsDB } from "../services/GiftService.mjs";
 import GiftDisplayOptions from "./GiftDisplayOptions";
 import GiftFilters from "./GiftFilters";
 import GiftGrid from "./GiftGrid";
