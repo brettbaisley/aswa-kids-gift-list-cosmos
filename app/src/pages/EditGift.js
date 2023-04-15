@@ -36,7 +36,8 @@ const EditPage = () => {
 
     // TODO: FIX THIS WARNING:  40:8:  React Hook useEffect has a missing dependency: 'gift'. Either include it or remove the dependency array. You can also do a functional update 'setGift(g => ...)' if you only need 'gift' in the 'setGift' call  react-hooks/exhaustive-deps
     useEffect(() => {
-        setGift( {...gift, kids: selectedKids});
+        setGift({...gift, kids: selectedKids});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedKids]);
 
 
