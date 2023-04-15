@@ -1,0 +1,21 @@
+.filters {
+    grid-area: filters;
+}
+
+.filters ul {
+    list-style: none;
+    padding-left: 0.5rem;
+}
+
+.filters input {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.filters h2  {
+    margin-top: 1.5rem;
+}
+
+.filters h2:first-child  {
+    margin-top: 0;
+}

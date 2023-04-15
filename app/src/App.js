@@ -1,19 +1,17 @@
-import React from 'react';
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Registry from './components/Registry';
-
-import {AuthContextProvider} from './context/AuthContext';
-
+import { Routes, Route } from "react-router-dom";
+import LoginPage  from "./pages/Login";
+import HomePage  from "./pages/Home";
+import AddPage from "./pages/AddGift";
+import EditPage from "./pages/EditGift";
 
 const App = () => {
   return (
-    <AuthContextProvider>
-      <Header />
-      <Registry />
-      <Footer />  
-    </AuthContextProvider>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/admin/add" element={<AddPage />} />
+      <Route path="/admin/edit/:id" element={<EditPage />} />
+    </Routes>
   );
 }
 

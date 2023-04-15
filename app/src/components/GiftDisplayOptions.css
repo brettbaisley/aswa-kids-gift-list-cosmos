@@ -1,0 +1,15 @@
+.gift-display-options {
+    grid-area: gift-display-options;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.gift-display-options button {
+    margin-right: .5rem;
+}
+
+.gift-display-options select {
+    margin-left: .5rem;
+}

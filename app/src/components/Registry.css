@@ -1,16 +1,9 @@
-.wrapper {
-    background-color: rgba(225, 225, 225, 0.75);
-    padding: .5rem; 
+.registry {
+    display: grid;
+    grid-template-columns: 200px auto;
+    grid-template-rows: 30px auto;
+    grid-template-areas:
+        "filters gift-display-options"
+        "filters gifts-grid";
+    gap: 1rem;
 }
-
-
-
-@media (min-width: 700px) {
-    .wrapper {
-        background-color: rgba(225, 225, 225, 0.75);
-        margin-left: 6rem;
-        margin-right: 6rem;
-        padding: 2rem;
-    }
-}
-  

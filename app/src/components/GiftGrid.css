@@ -1,0 +1,42 @@
+.gifts {
+    grid-area: gifts-grid;
+}
+
+.gifts-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gifts-list > .gift-grid-item {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 3fr 1fr 1fr 1fr;
+    width: 100%;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.gifts-list > .gift-grid-item:nth-child(odd){
+    background-color: #f5f5f5;
+}
+
+.gifts-grid {
+    grid-area: gifts-grid;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    align-content: start; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
+}
+
+.gifts-grid > .gift-grid-item {
+    box-shadow: 1px 5px 10px 1px rgba(0,0,0,0.3);
+    padding: 1rem;
+}

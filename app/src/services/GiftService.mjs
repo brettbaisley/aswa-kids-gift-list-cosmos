@@ -17,8 +17,6 @@ export const createGiftDB = async (gift) => {
         body: JSON.stringify(gift)
     });
     const gifts = await data.json();
-
-
     return gifts;
 }
 

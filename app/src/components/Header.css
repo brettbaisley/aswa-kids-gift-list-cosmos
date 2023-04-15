@@ -19,3 +19,18 @@ header {
 .auth-list ul li {
   margin-left: .5rem;
 }
+
+.btn-loginout {
+  color: white;
+  background-color: hsl(33, 100%, 55%);
+  padding: .5rem;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 36px;
+  margin-left: .5rem;
+}
+
+.btn-loginout:hover {
+  background-color: hsl(33, 100%, 50%);
+}

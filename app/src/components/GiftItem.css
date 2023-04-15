@@ -1,12 +1,4 @@
-.gift {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    min-width: 250px;
-    max-width: 350px;
-}
+
 
 
 .title {
