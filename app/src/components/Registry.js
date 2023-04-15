@@ -7,8 +7,9 @@ import GiftGrid from "./GiftGrid";
 
 
 const Registry = () => {
-    const [mateoSelected, setMateoSelected] = useState(true);
-    const [lucasSelected, setLucasSelected] = useState(true);
+    // const [mateoSelected, setMateoSelected] = useState(true);
+    // const [lucasSelected, setLucasSelected] = useState(true);
+    const [filterKids, setFilterKids] = useState(["Mateo", "Lucas"]);
     const [displayType, setDisplayType] = useState('grid');
     const [sortBy, setSortBy] = useState('Date Added');
     const [hidePurchased, setHidePurchased] = useState(false);
@@ -64,11 +65,9 @@ const Registry = () => {
     return (
         <main className="registry">
             <GiftFilters 
-                mateoSelected={mateoSelected}
-                lucasSelected={lucasSelected}
+                filterKids={filterKids}
+                setFilterKids={setFilterKids}
                 hidePurchased={hidePurchased}
-                toggleMateo={setMateoSelected} 
-                toggleLucas={setLucasSelected}
                 toggleHidePurchased={setHidePurchased}
             />
             <GiftDisplayOptions 
@@ -80,10 +79,7 @@ const Registry = () => {
             <GiftGrid 
                 giftList={allGifts} 
                 displayType={displayType} 
-                mateoSelected={mateoSelected}
-                lucasSelected={lucasSelected}
-                toggleMateoSelected={setMateoSelected}
-                toggleLucasSelected={setLucasSelected}
+                filterKids={filterKids}                
             />
         </main>
     )
