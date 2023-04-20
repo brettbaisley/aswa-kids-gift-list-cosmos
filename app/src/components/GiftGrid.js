@@ -15,8 +15,6 @@ const GiftGrid = ({giftList, displayType, filterKids, hidePurchased}) => {
     return (
         <ul className={ul_className}>
             { 
-                //giftList.filter(gift => gift.kids.some(kid => filterKids.includes(kid))).map(gift => {
-                //filter giftList by both hidePurchased and filterKids
                 giftList.filter(gift => {
                     if (hidePurchased && filterKids.length > 0) {
                         return !gift.purchased && gift.kids.some(kid => filterKids.includes(kid))
