@@ -1,17 +1,18 @@
-import { Routes, Route } from "react-router-dom";
-import LoginPage  from "./pages/Login";
-import HomePage  from "./pages/Home";
-import AddPage from "./pages/AddGift";
-import EditPage from "./pages/EditGift";
+import Header from './components/Header';
+import Registry from './components//Registry';
+import Footer from './components//Footer';
+
+import {AuthContextProvider} from './context/AuthContext';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/admin/add" element={<AddPage />} />
-      <Route path="/admin/edit/:id" element={<EditPage />} />
-    </Routes>
+    <AuthContextProvider>
+      <div className="app">
+          <Header />
+          <Registry />
+          <Footer />  
+      </div>
+    </AuthContextProvider>
   );
 }
 
