@@ -5,7 +5,6 @@ import GiftDisplayOptions from "./GiftDisplayOptions";
 import GiftFilters from "./GiftFilters";
 import GiftGrid from "./GiftGrid";
 
-
 const Registry = () => {
     const [filterKids, setFilterKids] = useState(["Mateo", "Lucas"]);
     const [displayType, setDisplayType] = useState('grid');
