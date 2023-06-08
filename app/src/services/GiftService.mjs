@@ -5,9 +5,17 @@ export const fetchGiftsDB = async () => {
 }
 
 export const fetchGiftDB = async (id) => {
-    const data = await fetch(`/api/gifts/${id}`);
-    const gifts = await data.json();
-    return gifts;
+    try {
+        const response = await fetch(`/api/gifts/${id}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data;        
+    } catch (error) {
+        console.error('Error fetching gifts:', error);
+        throw error;
+    }
 }
 
 export const createGiftDB = async (gift) => {

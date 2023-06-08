@@ -4,7 +4,7 @@ import './GiftItem.css';
 
 
 
-const GiftItem = ( {gift} ) => {
+const GiftItem = ( {gift, handleUpdate } ) => {
     const [isEditing, setIsEditing] = useState(false);
     const [updatedGift, setUpdatedGift] = useState({...gift});
 
@@ -21,13 +21,7 @@ const GiftItem = ( {gift} ) => {
     };
 
     const handleUpdateGift = () => {
-        // Logic to update the todo item with the updated title
-        // For simplicity, let's assume it updates the todo item in a todo list array
-        // Replace this with your actual logic to update the todo item
-        const updatedGift = { ...gift, title: gift.title };
-        // Logic to update the todo item in the todo list array
-        // e.g., updateTodoItem(updatedTodo);
-        console.log('Updated gift:', updatedGift);
+        handleUpdate(updatedGift)
         setIsEditing(false);
     };
 

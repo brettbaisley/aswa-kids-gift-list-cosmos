@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./Registry.css";
-import { fetchGiftsDB } from "../services/GiftService.mjs";
+import { fetchGiftsDB, updateGiftDB } from "../services/GiftService.mjs";
 import GiftDisplayOptions from "./GiftDisplayOptions";
 import GiftFilters from "./GiftFilters";
 import GiftGrid from "./GiftGrid";
@@ -48,15 +48,21 @@ const Registry = () => {
     //     setGifts(newGifts);
     // }
     
-    // const handleHidePurchased = () => {
-    //     console.log("Handling Hide Purchased");
-    //     setHidePurchased(!hidePurchased);
-    // }
+
     
-    // const handleFilterKids = (kid) => {
-    //     console.log("Handling filter kids: ", kid);
-    //     kid === "All" ? setShowChild("All") : setShowChild(kid);
-    // }
+    const handleGiftUpdate = (updatedGift) => {
+        let newGifts = allGifts.map(gift => {
+            if (gift._id === updatedGift._id) {
+                return updatedGift;
+            } else {
+                return gift;
+            }
+        });
+
+        // Update the database record for the new updated gift
+        updateGiftDB(updatedGift._id, updatedGift);
+        setAllGifts(newGifts);
+    }
 
 
     return (
@@ -77,7 +83,8 @@ const Registry = () => {
                 giftList={allGifts} 
                 displayType={displayType} 
                 hidePurchased={hidePurchased}
-                filterKids={filterKids}                
+                filterKids={filterKids}
+                handleUpdate={handleGiftUpdate}              
             />
         </main>
     )
