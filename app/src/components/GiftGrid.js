@@ -4,7 +4,7 @@ import GiftActions from "./GiftActions";
 import { useAuthContext } from "../context/AuthContext";
 
 
-const GiftGrid = ({giftList, displayType, filterKids, hidePurchased}) => { 
+const GiftGrid = ({giftList, displayType, filterKids, hidePurchased, handleUpdate}) => { 
     const [userInfo] = useAuthContext();
 
     if (!giftList) return <h2>No Gifts to Display</h2>
@@ -28,7 +28,7 @@ const GiftGrid = ({giftList, displayType, filterKids, hidePurchased}) => {
                 }).map(gift => {   
                     return (
                         <li key={gift._id} className="gift-grid-item">
-                            <GiftItem gift={gift} />
+                            <GiftItem gift={gift} handleUpdate={handleUpdate} />
                             {userInfo && <GiftActions gift={gift} /> }
                         </li>
                     )

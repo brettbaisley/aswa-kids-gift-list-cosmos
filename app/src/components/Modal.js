@@ -1,21 +1,16 @@
-import React, {useState} from "react";
+import React from 'react';
 
-const Modal = ( {openText, children} ) => {
-    const [shouldShow, setShouldShow] = useState(false);
+const Modal = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
 
-    return (
-        <>
-        <button onClick={() => setShouldShow(true)}>{openText}</button>
-            {shouldShow && (
-                <div className="modal-background" onClick={() => setShouldShow(false)}>
-                    <div className="modal-body" onClick={e => e.stopPropagation()}>
-                        <button onClick={() => setShouldShow(false)}>Hide</button>
-                        {children} 
-                    </div>
-                </div>
-            )}
-        </>
-    )
-}
+  return (
+    <div className="modal">
+      <div className="modal-content">
+        <span className="close" onClick={onClose}>&times;</span>
+        {children}
+      </div>
+    </div>
+  );
+};
 
 export default Modal;

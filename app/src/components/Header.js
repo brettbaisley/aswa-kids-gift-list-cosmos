@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import './Header.css';
 import { useAuthContext } from "../context/AuthContext";
-import { Link } from "react-router-dom";
 
 
 const Header = () => {
@@ -31,7 +30,7 @@ const Header = () => {
             <div className="auth-list">
                 {
                     !userInfo ? (
-                        <Link className="btn-loginout" to="/login">Login</Link>
+                        <a className="btn-loginout" href="/.auth/login/github?post_login_redirect_uri=/">Login</a>
                     ) : (
                         <div className="user">
                             <p>Hi {userInfo.userDetails}
