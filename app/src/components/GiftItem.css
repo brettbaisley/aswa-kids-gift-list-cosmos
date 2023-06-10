@@ -7,22 +7,15 @@ button {
     background-color: none;
     border: none;
     padding: .25rem;
-    margin: 0
+    margin: .25rem
 }
 
-.success {
-    color: green;
-}
 .success:hover {
-    color: darkgreen;
     background-color: rgba(116, 188, 122, 0.5);
 }
-.warning {
-    color: red;
-}
+
 .warning:hover {
-    color: darkred;
-    background-color: rgba(252, 152, 152, 0.5);
+    background-color: rgba(210, 126, 126, 0.5);
 }
 
 
