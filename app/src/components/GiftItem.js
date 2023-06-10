@@ -1,18 +1,45 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
 import './GiftItem.css';
 
 
+const DisplayGiftItem = ( {gift, handleStartEdit} ) => {
+    return (
+        <>
+            <p className="title">{gift.title}</p>
+            <p className="brand">{gift.brand}</p>
+            <p className="price">${gift.price}</p>
+
+            <button onClick={handleStartEdit}>Edit</button>
+        </>
+    )
+}
+
+const EditGiftItem = ( {gift, handleTextChange, handleUpdateGift, handleStopEdit} ) => {
+    return (
+        <>
+        <input type="text" name="title" id="title" value={gift.title} onChange={handleTextChange}></input>
+        
+        <input type="text" name="brand" id="brand" value={gift.brand} onChange={handleTextChange}></input>
+
+        <input type="text" name="price" id="price" value={gift.price} onChange={handleTextChange}></input>
+
+        <div className="btn-group">
+            <button onClick={handleUpdateGift}>Update</button>
+            <button onClick={handleStopEdit}>Cancel</button>
+        </div>
+        </>
+    )
+}
 
 const GiftItem = ( {gift, handleUpdate } ) => {
     const [isEditing, setIsEditing] = useState(false);
     const [updatedGift, setUpdatedGift] = useState({...gift});
 
-    const handleOpenModal = () => {
+    const handleStartEdit = () => {
         setIsEditing(true);
     };
 
-    const handleCloseModal = () => {
+    const handleStopEdit = () => {
         setIsEditing(false);
     };
 
@@ -25,33 +52,11 @@ const GiftItem = ( {gift, handleUpdate } ) => {
         setIsEditing(false);
     };
 
-    return (
-        <>
-            <p className="title">{gift.title}</p>
-            <p className="brand">{gift.brand}</p>
-            <p className="price">${gift.price}</p>
 
-            <button onClick={handleOpenModal}>Edit</button>
-
-            <Modal isOpen={isEditing} onClose={handleCloseModal}>
-                <h2>Edit Gift</h2>
-
-                <label htmlFor="title">Title</label>
-                <input type="text" name="title" id="title" value={updatedGift.title} onChange={handleTextChange}></input>
-                
-                <label htmlFor="brand">Brand</label>
-                <input type="text" name="brand" id="brand" value={updatedGift.brand} onChange={handleTextChange}></input>
-
-                <label htmlFor="price">Price</label>
-                <input type="text" name="price" id="price" value={updatedGift.price} onChange={handleTextChange}></input>
-
-                <div className="btn-group">
-                    <button onClick={handleUpdateGift}>Update</button>
-                    <button onClick={handleCloseModal}>Cancel</button>
-                </div>
-            </Modal>
-        </>  
-    )
+    if (isEditing) {
+        return <EditGiftItem gift={updatedGift} handleTextChange={handleTextChange} handleUpdateGift={handleUpdateGift} handleStopEdit={handleStopEdit} />
+    }
+    return <DisplayGiftItem gift={gift} handleStartEdit={handleStartEdit}  />
 }
 
 export default GiftItem;
