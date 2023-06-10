@@ -1,19 +1,38 @@
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.5rem;
+    background-color: none;
+    border: none;
+    padding: .25rem;
+    margin: 0
+}
 
+.success {
+    color: green;
+}
+.success:hover {
+    color: darkgreen;
+    background-color: rgba(116, 188, 122, 0.5);
+}
+.warning {
+    color: red;
+}
+.warning:hover {
+    color: darkred;
+    background-color: rgba(252, 152, 152, 0.5);
+}
 
 
 .title {
     font-size: 1.5rem;
-    margin-bottom: .5rem;
 }
 
 .brand {
     font-size: .8rem;
     font-weight: 300;
-}
-
-.price {
-    margin-top: 1rem;
-    margin-bottom: .5rem;
 }
 
 .purchased,

@@ -9,7 +9,7 @@ const DisplayGiftItem = ( {gift, handleStartEdit} ) => {
             <p className="brand">{gift.brand}</p>
             <p className="price">${gift.price}</p>
 
-            <button onClick={handleStartEdit}>Edit</button>
+            <button onClick={handleStartEdit}><i class="fa-light fa-square-pen"></i></button>
         </>
     )
 }
@@ -24,8 +24,8 @@ const EditGiftItem = ( {gift, handleTextChange, handleUpdateGift, handleStopEdit
         <input type="text" name="price" id="price" value={gift.price} onChange={handleTextChange}></input>
 
         <div className="btn-group">
-            <button onClick={handleUpdateGift}>Update</button>
-            <button onClick={handleStopEdit}>Cancel</button>
+            <button className="success" onClick={handleUpdateGift}><i class="fa-light fa-pen"></i></button>
+            <button className="warning" onClick={handleStopEdit}><i class="fa-light fa-ban"></i></button>
         </div>
         </>
     )

@@ -7,8 +7,8 @@ const GiftDisplayOptions = ({displayType, setDisplayType, sortBy, setSortBy}) =>
     return (
         <div className="gift-display-options">
             <div>
-                <button onClick={() => setDisplayType('grid')}>Grid</button>
-                <button onClick={() => setDisplayType('list')}>List</button>
+                <button onClick={() => setDisplayType('grid')}><i class="fa-light fa-grid"></i></button>
+                <button onClick={() => setDisplayType('list')}><i class="fa-light fa-list"></i></button>
             </div>
 
             <div>
