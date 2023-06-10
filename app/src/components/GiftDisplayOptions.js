@@ -12,7 +12,7 @@ const GiftDisplayOptions = ({displayType, setDisplayType, sortBy, setSortBy}) =>
             </div>
 
             <div>
-                <label htmlFor="">Sort By:</label>
+                <label htmlFor="sortBySelect">Sort By:</label>
                 <select name="sortBySelect" id="sortBySelect" value={sortBy} onChange={e => setSortBy(e.target.value)}>
                     {sortByOptions.map((value, i) => {
                         return (<option key={i} value={value}>{value}</option>)
