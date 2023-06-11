@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const LoginPage = () => {
 
     return (
@@ -13,8 +11,6 @@ const LoginPage = () => {
                 <a href={`/.auth/login/aad?post_login_redirect_uri=/`}>Sign In With Microsoft AAD</a>
             </li>
         </ul>
-
-        <Link to="/">Back</Link>
         </>
     );
 };

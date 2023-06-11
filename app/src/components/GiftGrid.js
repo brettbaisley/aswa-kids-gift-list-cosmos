@@ -1,6 +1,5 @@
 import "./GiftGrid.css";
 import GiftItem from "./GiftItem";
-import GiftActions from "./GiftActions";
 import { useAuthContext } from "../context/AuthContext";
 
 
@@ -29,7 +28,6 @@ const GiftGrid = ({giftList, displayType, filterKids, hidePurchased, handleUpdat
                     return (
                         <li key={gift._id} className="gift-grid-item">
                             <GiftItem gift={gift} handleUpdate={handleUpdate} />
-                            {userInfo && <GiftActions gift={gift} /> }
                         </li>
                     )
                 })

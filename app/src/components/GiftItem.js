@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import './GiftItem.css';
-
+import { useAuthContext } from "../context/AuthContext";
 
 const DisplayGiftItem = ( {gift, handleStartEdit} ) => {
+    const [userInfo, setUserInfo] = useAuthContext();
     return (
         <>
             <p className="title">{gift.title}</p>
             <p className="brand">{gift.brand}</p>
             <p className="price">${gift.price}</p>
 
-            <button onClick={handleStartEdit}><i class="fa-light fa-square-pen"></i></button>
+            {
+                userInfo && <button onClick={handleStartEdit}><i className="fa-light fa-square-pen"></i></button>
+            }
         </>
     )
 }
@@ -24,8 +27,8 @@ const EditGiftItem = ( {gift, handleTextChange, handleUpdateGift, handleStopEdit
         <input type="text" name="price" id="price" value={gift.price} onChange={handleTextChange}></input>
 
         <div className="btn-group">
-            <button className="success" onClick={handleUpdateGift}><i class="fa-light fa-pen"></i></button>
-            <button className="warning" onClick={handleStopEdit}><i class="fa-light fa-ban"></i></button>
+            <button className="success" onClick={handleUpdateGift}><i className="fa-light fa-pen"></i></button>
+            <button className="warning" onClick={handleStopEdit}><i className="fa-light fa-ban"></i></button>
         </div>
         </>
     )

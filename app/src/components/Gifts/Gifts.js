@@ -1,6 +1,5 @@
 import React from "react";
 import Gift from './Gift';
-import GiftActions from './GiftActions';
 import './Gifts.css';
 
 const Gifts = ( {gifts, handlePurchased, handleDelete, hidePurchased, showChild, submitEditForm, idInput, titleInput, brandInput, priceInput} ) => {
@@ -20,12 +19,6 @@ const Gifts = ( {gifts, handlePurchased, handleDelete, hidePurchased, showChild,
                     return (
                         <li key={gift._id} className={purchasedClass}>
                             <Gift gift={gift} />
-                            <GiftActions gift={gift} handlePurchased={handlePurchased} handleDelete={handleDelete} submitEditForm={submitEditForm}
-                                idInput={idInput}
-                                titleInput={titleInput}
-                                brandInput={brandInput}
-                                priceInput={priceInput}
-                            />
                         </li>
                     )
                 }
