@@ -1,11 +1,7 @@
 import "./GiftGrid.css";
 import GiftItem from "./GiftItem";
-import { useAuthContext } from "../context/AuthContext";
-
 
 const GiftGrid = ({giftList, displayType, filterKids, hidePurchased, handleUpdate}) => { 
-    const [userInfo] = useAuthContext();
-
     if (!giftList) return <h2>No Gifts to Display</h2>
     if (giftList.length === 0) return <h2>Loading gifts...</h2>
     

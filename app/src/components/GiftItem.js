@@ -3,7 +3,7 @@ import './GiftItem.css';
 import { useAuthContext } from "../context/AuthContext";
 
 const DisplayGiftItem = ( {gift, handleStartEdit} ) => {
-    const [userInfo, setUserInfo] = useAuthContext();
+    const [userInfo] = useAuthContext();
     return (
         <>
             <p className="title">{gift.title}</p>
