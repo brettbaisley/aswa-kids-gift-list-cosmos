@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from "react";
 import "./Registry.css";
 import { fetchGiftsDB, updateGiftDB } from "../services/GiftService.mjs";
-import GiftDisplayOptions from "./GiftDisplayOptions";
 import GiftFilters from "./GiftFilters";
 import GiftGrid from "./GiftGrid";
 
 const Registry = () => {
     const [filterKids, setFilterKids] = useState(["Mateo", "Lucas"]);
-    const [displayType, setDisplayType] = useState('grid');
-    const [sortBy, setSortBy] = useState('Date Added');
+    // const [displayType, setDisplayType] = useState('grid');
     const [hidePurchased, setHidePurchased] = useState(false);
     const [allGifts, setAllGifts] = useState([]);
 
@@ -76,7 +74,7 @@ const Registry = () => {
         
             <GiftGrid 
                 giftList={allGifts} 
-                displayType={displayType} 
+                // displayType={displayType} 
                 hidePurchased={hidePurchased}
                 filterKids={filterKids}
                 handleUpdate={handleGiftUpdate}              
