@@ -1,0 +1,19 @@
+
+.toggleButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.toggleGrid {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .toggleFilter {
+        display: none;
+    }
+    .toggleGrid {
+        display: block;
+    }
+}

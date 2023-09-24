@@ -1,7 +1,13 @@
 .filters {
-    grid-area: filters;
+    min-width: 200px;
+    display: none;   
 }
 
+@media (min-width: 768px) {
+    .filters {
+        display: block;
+    } 
+}
 .filters ul {
     list-style: none;
     padding-left: 0.5rem;

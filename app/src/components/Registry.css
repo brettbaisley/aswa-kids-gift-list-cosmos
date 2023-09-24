@@ -1,9 +1,10 @@
 .registry {
-    display: grid;
-    grid-template-columns: 200px auto;
-    grid-template-rows: 30px auto;
-    grid-template-areas:
-        "filters gift-display-options"
-        "filters gifts-grid";
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .registry {
+        flex-direction: row;
+    }
 }

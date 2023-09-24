@@ -73,12 +73,7 @@ const Registry = () => {
                 hidePurchased={hidePurchased}
                 toggleHidePurchased={setHidePurchased}
             />
-            <GiftDisplayOptions 
-                displayType={displayType} 
-                setDisplayType={setDisplayType}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-            />
+        
             <GiftGrid 
                 giftList={allGifts} 
                 displayType={displayType} 
