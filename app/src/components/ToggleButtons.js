@@ -12,7 +12,7 @@ const ToggleButtons = ({showFilters, handleFilterToggle, displayType, handleDisp
             </button>
             <button id ="toggleGrid" className="toggleGrid" onClick={handleDisplayTypeToggle}>
                 {
-                    displayType == "grid" ? <i className="fa-light fa-list"></i> : <i className="fa-light fa-grid"></i>
+                    displayType === "grid" ? <i className="fa-light fa-list"></i> : <i className="fa-light fa-grid"></i>
                 }
                 </button>
         </div>
