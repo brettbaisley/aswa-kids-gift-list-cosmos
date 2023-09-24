@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style> 
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .menu {
+            min-width: 200px;
+            display: none;            
+        }
+        .menu.menu-expanded {
+            background-color: white;
+            display: block;
+            height: 100vh;
+            left: 0;
+            opacity: 1;
+            position:absolute;
+            min-width: 250px;
+            max-width: 50%;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .filters {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .toggleGrid {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .menu {
+                display: block;
+            } 
+            .toggleFilter {
+                display: none;
+            }
+            .toggleGrid {
+                display: block;
+            }
+            .flex-container {
+                flex-direction: row;
+            }
+            .grid-container {
+                grid-template-columns: 1fr 1fr 1fr ;
+            }
+        }
+    </style>
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleFilterButton = document.getElementById('toggleFilter');
+        const menu = document.querySelector('.menu');
+
+        toggleFilterButton.addEventListener('click', () => {
+            menu.classList.toggle('menu-expanded');
+        });
+    });
+</script>
+<body>
+    <header>GIFTS</header>
+    <div class="filters">
+        <button class="toggleFilter" id="toggleFilter">FILTER</button>
+        <button class="toggleGrid" id="toggleGrid">GRID</button>
+    </div>
+    <div class="flex-container">
+        <div class="menu">
+            <h1>Filters</h1>
+            <h2>Status</h2>
+            <ul>
+                <li><input type="checkbox" name="f" id="f">Hide Purchased</li>
+            </ul>
+
+            <h2>Kids</h2>
+            <ul>
+                <li><input type="checkbox" name="a" id="a">Mateo</li>
+                <li><input type="checkbox" name="b" id="b">Lucas</li>
+            </ul>
+            
+            <h2>Price</h2>
+            <ul>
+                <li><input type="checkbox" name="f" id="f">$0 - $25</li>
+                <li><input type="checkbox" name="g" id="g">$25 - $50</li>
+                <li><input type="checkbox" name="h" id="h">$50 - $100</li>
+                <li><input type="checkbox" name="i" id="i">$100 - $150</li>
+                <li><input type="checkbox" name="j" id="j">$150+</li>
+            </ul>
+
+            <h1>Order</h1>
+            <h2>Sort By</h2>
+            <select>
+                <option value="dateadded">Date Added</option>
+                <option value="price">Price</option>
+            </select>
+
+        </div>
+        <ul class="grid-container">
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product so that people will know more about what it is, so they can decide if they want to buy it or not.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product so that people will know more about what it is, so they can decide if they want to buy it or not.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product so that people will know more about what it is, so they can decide if they want to buy it or not.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product so that people will know more about what it is, so they can decide if they want to buy it or not.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product so that people will know more about what it is, so they can decide if they want to buy it or not.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+
+            <li>
+                <img src="https://placehold.co/200x200" alt="placeholder">
+                <div class="title">Product Title</div>
+                <div class="desc">Short description of the product.</div>
+                <div class="price">$130</div>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        FOOTER
+    </footer>
+    
+</body>
+</html>
