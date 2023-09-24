@@ -1,11 +1,11 @@
 import "./GiftFilters.css";
 
-const GiftFilters = ({ filterKids, setFilterKids, hidePurchased, toggleHidePurchased}) => { 
+const GiftFilters = ({ filterKids, setFilterKids, showFilters, hidePurchased, toggleHidePurchased}) => { 
     const kidsList = ["Mateo", "Lucas"];
     
 
     return (
-        <div className="filters">
+        <div className={showFilters ? "filters filters-expanded" : "filters"}>
             <h2>Kids</h2>
             <ul>
                 { 

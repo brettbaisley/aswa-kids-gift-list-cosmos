@@ -1,5 +1,7 @@
 
 .toggleButtons {
+    background-color: rgb(245, 245, 245);
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

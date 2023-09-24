@@ -3,10 +3,12 @@ import "./Registry.css";
 import { fetchGiftsDB, updateGiftDB } from "../services/GiftService.mjs";
 import GiftFilters from "./GiftFilters";
 import GiftGrid from "./GiftGrid";
+import ToggleButtons from "./ToggleButtons";
 
 const Registry = () => {
     const [filterKids, setFilterKids] = useState(["Mateo", "Lucas"]);
-    // const [displayType, setDisplayType] = useState('grid');
+    const [displayType, setDisplayType] = useState('grid');
+    const [showFilters, setShowFilters] = useState(false);
     const [hidePurchased, setHidePurchased] = useState(false);
     const [allGifts, setAllGifts] = useState([]);
 
@@ -47,6 +49,17 @@ const Registry = () => {
     // }
     
 
+    const handleFilterToggle = () => {
+        setShowFilters(!showFilters);
+    }
+
+    const handleDisplayTypeToggle = () => {
+        if (displayType === "grid") {
+            setDisplayType('list');
+        } else {
+            setDisplayType('grid');
+        }
+    }
     
     const handleGiftUpdate = (updatedGift) => {
         let newGifts = allGifts.map(gift => {
@@ -64,9 +77,17 @@ const Registry = () => {
 
 
     return (
+        <>
+        <ToggleButtons 
+            showFilters={showFilters} 
+            handleFilterToggle={handleFilterToggle} 
+            displayType={displayType}
+            handleDisplayTypeToggle={handleDisplayTypeToggle}
+        />
         <main className="registry">
             <GiftFilters 
                 filterKids={filterKids}
+                showFilters={showFilters} 
                 setFilterKids={setFilterKids}
                 hidePurchased={hidePurchased}
                 toggleHidePurchased={setHidePurchased}
@@ -74,12 +95,12 @@ const Registry = () => {
         
             <GiftGrid 
                 giftList={allGifts} 
-                // displayType={displayType} 
                 hidePurchased={hidePurchased}
                 filterKids={filterKids}
                 handleUpdate={handleGiftUpdate}              
             />
         </main>
+        </>
     )
 }
 
