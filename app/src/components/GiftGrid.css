@@ -1,10 +1,17 @@
 .gifts {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 10px;
     list-style: none;
     padding: 0;
     width: 100%;
+}
+
+
+@media (min-width: 600px) {
+    .gifts {
+        grid-template-columns: 1fr 1fr ;
+    }
 }
 
 @media (min-width: 768px) {
