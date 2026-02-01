@@ -1,58 +1,77 @@
 .gifts {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    list-style: none;
-    padding: 0;
-    width: 100%;
-}
-
-
-@media (min-width: 600px) {
-    .gifts {
-        grid-template-columns: 1fr 1fr ;
-    }
-}
-
-@media (min-width: 768px) {
-    .gifts {
-        grid-template-columns: 1fr 1fr 1fr ;
-    }
-}
-
-@media (min-width: 1200px) {
-    .gifts {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* GRID STYLES
-.gifts-grid {
-    grid-area: gifts-grid;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    align-content: start; 
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
+}
+
+.gifts-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+    .gifts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .gifts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .gifts-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.gifts-list {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
 }
 
-.gifts-grid > .gift-grid-item {
-    grid-auto-flow: row;
-    grid-auto-columns: 4fr 1fr 1fr 1fr;
-    box-shadow: 1px 5px 10px 1px rgba(0,0,0,0.3);
-    padding: 1rem;
-} */
+.gift-grid-item {
+    list-style: none;
+}
+
+.gift-grid-item--list .gift-card {
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.gift-grid-item--list .gift-card__image {
+    flex: 0 0 200px;
+    max-width: 200px;
+    aspect-ratio: 4 / 3;
+}
+
+.gift-grid-item--list .gift-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gift-grid-item--list .gift-card__header {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.gift-grid-item--list .giftPrice {
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+@media (max-width: 640px) {
+    .gift-grid-item--list .gift-card {
+        flex-direction: column;
+    }
+
+    .gift-grid-item--list .gift-card__image {
+        max-width: 100%;
+    }
+}

@@ -3,15 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prestart": "npm run build",
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "mongodb": "^4.12.1",
-    "mongoose": "^6.7.3"
+    "mongodb": "^4.17.2",
+    "mongoose": "^6.13.8"
   },
   "devDependencies": {
-    "@azure/static-web-apps-cli": "^1.0.3",
-    "azure-functions-core-tools": "^4.0.4915"
+    "@azure/functions": "^4.5.0",
+    "@azure/static-web-apps-cli": "^1.1.10",
+    "@types/node": "^20.10.0",
+    "azure-functions-core-tools": "^4.6.0",
+    "typescript": "^5.3.3"
   }
 }

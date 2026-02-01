@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Mona-Sans";
-  src: local("Mona-Sans"), url("./fonts/Mona\ Sans/Mona-Sans.ttf") format("truetype");
+  src: local("Mona-Sans"), url("./fonts/Mona Sans/TTF/Mona-Sans-Bold.ttf") format("truetype");
   font-weight: bold;
 }
 
