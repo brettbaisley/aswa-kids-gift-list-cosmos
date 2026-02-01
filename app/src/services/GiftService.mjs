@@ -35,7 +35,13 @@ export const updateGiftDB = async (id, newGift) => {
 }
 
 export const deleteGiftDB = async (id) => {
-    const data = await fetch(`/api/gifts/${id}`, { method: 'DELETE' });
-    const gifts = await data.json();
-    return gifts;
+    const response = await fetch(`/api/gifts/${id}`, { method: 'DELETE' });
+    
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Failed to delete gift' }));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
 }

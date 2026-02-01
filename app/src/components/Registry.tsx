@@ -1,9 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import './Registry.css';
-import { fetchGiftsDB, updateGiftDB } from '../services/GiftService.mjs';
+import { fetchGiftsDB, updateGiftDB, deleteGiftDB } from '../services/GiftService.mjs';
 import GiftFilters from './GiftFilters';
 import GiftGrid from './GiftGrid';
 import ToggleButtons from './ToggleButtons';
+import GiftAdd from './Gifts/GiftAdd';
+import { useAuthContext } from '../context/AuthContext';
 import type { Gift } from '../types/gift';
 
 const PRICE_RANGES = [
@@ -14,6 +16,7 @@ const PRICE_RANGES = [
 ];
 
 const Registry = () => {
+  const { userInfo } = useAuthContext();
   const [kidFilter, setKidFilter] = useState<'both' | 'mateo' | 'lucas'>('both');
   const [displayType, setDisplayType] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
@@ -23,6 +26,7 @@ const Registry = () => {
   const [sliderMin, setSliderMin] = useState(0);
   const [sliderMax, setSliderMax] = useState(0);
   const [sliderActive, setSliderActive] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
     fetchGiftsDB().then((gifts: Gift[]) => setAllGifts(gifts));
@@ -65,6 +69,23 @@ const Registry = () => {
 
     updateGiftDB(updatedGift._id, updatedGift);
     setAllGifts(newGifts);
+  };
+
+  const handleGiftDelete = async (giftId: string) => {
+    try {
+      await deleteGiftDB(giftId);
+      setAllGifts((prev) => prev.filter((gift) => gift._id !== giftId));
+    } catch (error: any) {
+      // Show error message to user
+      const errorMessage = error.message || 'Failed to delete gift';
+      alert(errorMessage);
+      console.error('Error deleting gift:', error);
+    }
+  };
+
+  const handleGiftAdd = (newGift: Gift) => {
+    setAllGifts((prev) => [...prev, newGift]);
+    setShowAddForm(false);
   };
 
   const handleTogglePriceRange = (rangeId: string) => {
@@ -166,12 +187,26 @@ const Registry = () => {
           clearSlider={clearSlider}
         />
 
-        <GiftGrid
-          giftList={filteredGifts}
-          displayType={displayType}
-          handleUpdate={handleGiftUpdate}
-        />
+        <div>
+          {userInfo && (
+            <div className="add-gift-section">
+              <button className="btn-add-gift" onClick={() => setShowAddForm(true)}>
+                <i className="fa-light fa-plus"></i>
+                <span>Add New Gift</span>
+              </button>
+            </div>
+          )}
+
+          <GiftGrid
+            giftList={filteredGifts}
+            displayType={displayType}
+            handleUpdate={handleGiftUpdate}
+            handleDelete={handleGiftDelete}
+          />
+        </div>
       </main>
+
+      {showAddForm && <GiftAdd handleAdd={handleGiftAdd} toggleForm={setShowAddForm} />}
     </>
   );
 };

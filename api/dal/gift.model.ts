@@ -7,6 +7,7 @@ interface IGift extends Document {
     purchased: boolean;
     kids?: string[];
     imageUrl?: string;
+    createdBy?: string;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -18,6 +19,7 @@ const GiftSchema = new Schema<IGift>({
     purchased: { type: Boolean, default: false, required: true },
     kids: { type: [String], required: false },
     imageUrl: { type: String, required: false, default: '' },
+    createdBy: { type: String, required: false },
 }, { timestamps: true });
 
 export const GiftModel = mongoose.model<IGift>('Gift', GiftSchema);

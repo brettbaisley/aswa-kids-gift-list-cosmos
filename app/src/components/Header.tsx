@@ -3,7 +3,7 @@ import './Header.css';
 import { useAuthContext, type UserInfo } from '../context/AuthContext';
 
 const Header = () => {
-  const [userInfo, setUserInfo] = useAuthContext();
+  const { userInfo, setUserInfo } = useAuthContext();
 
   useEffect(() => {
     const loadUserInfo = async () => {

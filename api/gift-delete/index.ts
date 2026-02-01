@@ -1,5 +1,6 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import GiftService from '../services/gift.service';
+import { getUserIdentity, isAdmin } from '../utils/auth';
 
 export default async function httpTrigger(req: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
     context.log('HTTP trigger function processed a request.');
@@ -10,7 +11,31 @@ export default async function httpTrigger(req: HttpRequest, context: InvocationC
         if (!id) {
             return {
                 status: 400,
-                body: `ERROR: ID not specified`,
+                body: JSON.stringify({ error: 'ID not specified' }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+        }
+        
+        // Extract user identity from Azure Static Web Apps headers
+        const userIdentity = getUserIdentity(req);
+        
+        if (!userIdentity) {
+            return {
+                status: 401,
+                body: JSON.stringify({ error: 'Authentication required to delete gifts' }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+        }
+        
+        // Only admins can delete gifts
+        if (!isAdmin(userIdentity)) {
+            return {
+                status: 403,
+                body: JSON.stringify({ error: 'Only administrators can delete gifts' }),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -29,7 +54,7 @@ export default async function httpTrigger(req: HttpRequest, context: InvocationC
         context.log(`Error: ${error}`);
         return {
             status: 500,
-            body: `ERROR: Unable to DELETE gift with id of ${req.params?.id}: ${error}`,
+            body: JSON.stringify({ error: `Unable to DELETE gift with id of ${req.params?.id}: ${error}` }),
             headers: {
                 'Content-Type': 'application/json'
             }

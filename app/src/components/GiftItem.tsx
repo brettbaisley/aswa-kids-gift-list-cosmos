@@ -6,6 +6,7 @@ import type { Gift } from '../types/gift';
 type DisplayGiftItemProps = {
   gift: Gift;
   handleStartEdit: () => void;
+  handleDelete: () => void;
 };
 
 type EditGiftItemProps = {
@@ -19,10 +20,11 @@ type EditGiftItemProps = {
 type GiftItemProps = {
   gift: Gift;
   handleUpdate: (gift: Gift) => void;
+  handleDelete: (giftId: string) => void;
 };
 
-const DisplayGiftItem = ({ gift, handleStartEdit }: DisplayGiftItemProps) => {
-  const [userInfo] = useAuthContext();
+const DisplayGiftItem = ({ gift, handleStartEdit, handleDelete }: DisplayGiftItemProps) => {
+  const { userInfo, isAdmin } = useAuthContext();
   const kids = gift.kids ?? [];
   const price = Number(gift.price) || 0;
   return (
@@ -58,9 +60,18 @@ const DisplayGiftItem = ({ gift, handleStartEdit }: DisplayGiftItemProps) => {
         </div>
       </div>
       {userInfo && (
-        <button className="gift-card__edit" onClick={handleStartEdit} aria-label="Edit gift">
-          <i className="fa-light fa-square-pen"></i>
-        </button>
+        <>
+          <button className="gift-card__edit" onClick={handleStartEdit} aria-label="Edit gift">
+            <i className="fa-light fa-square-pen"></i>
+            <span className="btn-text">Edit</span>
+          </button>
+          {isAdmin && (
+            <button className="gift-card__delete" onClick={handleDelete} aria-label="Delete gift">
+              <i className="fa-light fa-trash"></i>
+              <span className="btn-text">Delete</span>
+            </button>
+          )}
+        </>
       )}
     </div>
   );
@@ -134,16 +145,18 @@ const EditGiftItem = ({
       <div className="btn-group">
         <button className="success" onClick={handleUpdateGift} aria-label="Save gift">
           <i className="fa-light fa-pen"></i>
+          <span>Save</span>
         </button>
         <button className="warning" onClick={handleStopEdit} aria-label="Cancel edit">
           <i className="fa-light fa-ban"></i>
+          <span>Cancel</span>
         </button>
       </div>
     </div>
   );
 };
 
-const GiftItem = ({ gift, handleUpdate }: GiftItemProps) => {
+const GiftItem = ({ gift, handleUpdate, handleDelete }: GiftItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedGift, setUpdatedGift] = useState<Gift>({ ...gift, kids: gift.kids ?? [] });
 
@@ -179,6 +192,12 @@ const GiftItem = ({ gift, handleUpdate }: GiftItemProps) => {
     setIsEditing(false);
   };
 
+  const onDelete = () => {
+    if (window.confirm('Are you sure you want to delete this gift?')) {
+      handleDelete(gift._id);
+    }
+  };
+
   if (isEditing) {
     return (
       <EditGiftItem
@@ -190,7 +209,7 @@ const GiftItem = ({ gift, handleUpdate }: GiftItemProps) => {
       />
     );
   }
-  return <DisplayGiftItem gift={gift} handleStartEdit={handleStartEdit} />;
+  return <DisplayGiftItem gift={gift} handleStartEdit={handleStartEdit} handleDelete={onDelete} />;
 };
 
 export default GiftItem;

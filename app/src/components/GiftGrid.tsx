@@ -6,12 +6,14 @@ type GiftGridProps = {
   giftList?: Gift[];
   displayType?: 'grid' | 'list';
   handleUpdate: (gift: Gift) => void;
+  handleDelete: (giftId: string) => void;
 };
 
 const GiftGrid = ({
   giftList,
   displayType = 'grid',
-  handleUpdate
+  handleUpdate,
+  handleDelete
 }: GiftGridProps) => {
   if (!giftList) return <h2>No Gifts to Display</h2>;
   if (giftList.length === 0) return <h2>No gifts match your filters.</h2>;
@@ -27,7 +29,7 @@ const GiftGrid = ({
 
         return (
           <li key={gift._id} className={itemClassName}>
-            <GiftItem gift={gift} handleUpdate={handleUpdate} />
+            <GiftItem gift={gift} handleUpdate={handleUpdate} handleDelete={handleDelete} />
           </li>
         );
       })}
