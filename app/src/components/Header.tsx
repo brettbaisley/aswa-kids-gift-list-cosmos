@@ -18,6 +18,11 @@ const Header = () => {
       const response = await fetch('/.auth/me');
       const payload = (await response.json()) as { clientPrincipal?: UserInfo };
       const { clientPrincipal } = payload;
+      console.log('=== Authentication Debug ===');
+      console.log('Full clientPrincipal object:', JSON.stringify(clientPrincipal, null, 2));
+      console.log('userDetails field:', clientPrincipal?.userDetails);
+      console.log('All keys:', clientPrincipal ? Object.keys(clientPrincipal) : 'none');
+      console.log('==========================');
       return clientPrincipal;
     } catch (error) {
       console.error('No profile could be found');

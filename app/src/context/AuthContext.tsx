@@ -13,18 +13,27 @@ type AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
-// Static list of admin users
+// Static list of admin users (case-insensitive)
 const ADMIN_USERS = ['brettbaisley', 'enerlise615@gmail.com'];
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>(undefined);
 
-  // Calculate isAdmin based on userDetails
+  // Calculate isAdmin based on userDetails (case-insensitive comparison)
   const isAdmin = useMemo(() => {
     if (!userInfo?.userDetails) {
+      console.log('isAdmin check: No userDetails found', userInfo);
       return false;
     }
-    return ADMIN_USERS.includes(userInfo.userDetails);
+    const userDetailsLower = userInfo.userDetails.toLowerCase().trim();
+    const adminStatus = ADMIN_USERS.some(admin => admin.toLowerCase() === userDetailsLower);
+    console.log('isAdmin check:', { 
+      userDetails: userInfo.userDetails, 
+      userDetailsNormalized: userDetailsLower,
+      adminUsers: ADMIN_USERS, 
+      isAdmin: adminStatus 
+    });
+    return adminStatus;
   }, [userInfo]);
 
   const value = {

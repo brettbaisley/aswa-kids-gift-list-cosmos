@@ -250,3 +250,30 @@
 .warning:hover {
     background-color: rgba(210, 126, 126, 0.5);
 }
+
+.gift-card__purchased-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #10b981;
+    color: #ffffff;
+    margin-top: 0.5rem;
+}
+
+.gift-card__purchased-btn:hover {
+    background: #059669;
+}
+
+.gift-card__purchased-btn--purchased {
+    background: #6b7280;
+    color: #ffffff;
+}
+
+.gift-card__purchased-btn--purchased:hover {
+    background: #4b5563;
+}

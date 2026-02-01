@@ -7,6 +7,7 @@ type DisplayGiftItemProps = {
   gift: Gift;
   handleStartEdit: () => void;
   handleDelete: () => void;
+  handleTogglePurchased: () => void;
 };
 
 type EditGiftItemProps = {
@@ -23,7 +24,7 @@ type GiftItemProps = {
   handleDelete: (giftId: string) => void;
 };
 
-const DisplayGiftItem = ({ gift, handleStartEdit, handleDelete }: DisplayGiftItemProps) => {
+const DisplayGiftItem = ({ gift, handleStartEdit, handleDelete, handleTogglePurchased }: DisplayGiftItemProps) => {
   const { userInfo, isAdmin } = useAuthContext();
   const kids = gift.kids ?? [];
   const price = Number(gift.price) || 0;
@@ -71,6 +72,13 @@ const DisplayGiftItem = ({ gift, handleStartEdit, handleDelete }: DisplayGiftIte
               <span className="btn-text">Delete</span>
             </button>
           )}
+          <button 
+            className={gift.purchased ? 'gift-card__purchased-btn gift-card__purchased-btn--purchased' : 'gift-card__purchased-btn'}
+            onClick={handleTogglePurchased}
+            aria-label={gift.purchased ? 'Mark as not purchased' : 'Mark as purchased'}
+          >
+            {gift.purchased ? 'Mark as Not Purchased' : 'Mark as Purchased'}
+          </button>
         </>
       )}
     </div>
@@ -198,6 +206,11 @@ const GiftItem = ({ gift, handleUpdate, handleDelete }: GiftItemProps) => {
     }
   };
 
+  const handleTogglePurchased = () => {
+    const updatedGiftData = { ...gift, purchased: !gift.purchased };
+    handleUpdate(updatedGiftData);
+  };
+
   if (isEditing) {
     return (
       <EditGiftItem
@@ -209,7 +222,7 @@ const GiftItem = ({ gift, handleUpdate, handleDelete }: GiftItemProps) => {
       />
     );
   }
-  return <DisplayGiftItem gift={gift} handleStartEdit={handleStartEdit} handleDelete={onDelete} />;
+  return <DisplayGiftItem gift={gift} handleStartEdit={handleStartEdit} handleDelete={onDelete} handleTogglePurchased={handleTogglePurchased} />;
 };
 
 export default GiftItem;

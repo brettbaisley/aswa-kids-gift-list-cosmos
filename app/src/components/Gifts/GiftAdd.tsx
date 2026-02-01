@@ -8,6 +8,7 @@ type GiftFormValues = {
   brand: string;
   price: string;
   imageUrl: string;
+  kids: string[];
 };
 
 type GiftAddProps = {
@@ -20,7 +21,8 @@ const AddEditGiftForm = ({ handleAdd, toggleForm }: GiftAddProps) => {
     title: '',
     brand: '',
     price: '0.00',
-    imageUrl: ''
+    imageUrl: '',
+    kids: []
   });
   const [error, setError] = useState<string | undefined>(undefined);
   const [status, setStatus] = useState<'typing' | 'submitting' | 'success'>('typing');
@@ -28,6 +30,18 @@ const AddEditGiftForm = ({ handleAdd, toggleForm }: GiftAddProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newFormValues = { ...formValues, [event.target.name]: event.target.value } as GiftFormValues;
     setFormValues(newFormValues);
+  };
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const kidName = event.target.name;
+    const isChecked = event.target.checked;
+    
+    setFormValues(prev => ({
+      ...prev,
+      kids: isChecked 
+        ? [...prev.kids, kidName]
+        : prev.kids.filter(k => k !== kidName)
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,6 +85,30 @@ const AddEditGiftForm = ({ handleAdd, toggleForm }: GiftAddProps) => {
             value={formValues.imageUrl}
             onChange={handleChange}
           />
+
+          <div className="gift-card__checkboxes">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                name="Mateo"
+                id="Mateo"
+                checked={formValues.kids.includes('Mateo')}
+                onChange={handleCheckboxChange}
+              />
+              Mateo
+            </label>
+
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                name="Lucas"
+                id="Lucas"
+                checked={formValues.kids.includes('Lucas')}
+                onChange={handleCheckboxChange}
+              />
+              Lucas
+            </label>
+          </div>
 
           <div className="actions">
             <button type="button" onClick={() => toggleForm(false)}>
