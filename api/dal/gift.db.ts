@@ -16,7 +16,12 @@ interface IGift extends Document {
 }
 
 // Initialize MongoDB connection
-mongoose.connect(process.env.CosmosDbConnectionString || '');
+mongoose.set('strictQuery', false);
+const cosmosDbConnectionString = process.env.CosmosDbConnectionString;
+if (!cosmosDbConnectionString) {
+    throw new Error('Missing CosmosDbConnectionString in environment settings. Add it to api/local.settings.json (Values) before starting the Functions host.');
+}
+mongoose.connect(cosmosDbConnectionString);
 
 export const getGiftsDB = async (): Promise<IGift[]> => {
     return await GiftModel.find({}).read(ReadPreference.NEAREST).exec();
