@@ -7,6 +7,7 @@ type GiftFormValues = {
   title: string;
   brand: string;
   price: string;
+  imageUrl: string;
 };
 
 type GiftAddProps = {
@@ -18,7 +19,8 @@ const AddEditGiftForm = ({ handleAdd, toggleForm }: GiftAddProps) => {
   const [formValues, setFormValues] = useState<GiftFormValues>({
     title: '',
     brand: '',
-    price: '0.00'
+    price: '0.00',
+    imageUrl: ''
   });
   const [error, setError] = useState<string | undefined>(undefined);
   const [status, setStatus] = useState<'typing' | 'submitting' | 'success'>('typing');
@@ -59,6 +61,16 @@ const AddEditGiftForm = ({ handleAdd, toggleForm }: GiftAddProps) => {
 
           <label htmlFor="price">Price ($)</label>
           <input type="text" name="price" id="price" value={formValues.price} onChange={handleChange} />
+
+          <label htmlFor="imageUrl">Image URL</label>
+          <input
+            type="url"
+            name="imageUrl"
+            id="imageUrl"
+            placeholder="https://..."
+            value={formValues.imageUrl}
+            onChange={handleChange}
+          />
 
           <div className="actions">
             <button type="button" onClick={() => toggleForm(false)}>

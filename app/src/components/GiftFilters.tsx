@@ -1,67 +1,164 @@
+import type { Dispatch, SetStateAction } from 'react';
 import './GiftFilters.css';
 
+type PriceRange = {
+  id: string;
+  label: string;
+  min: number;
+  max: number;
+};
+
 type GiftFiltersProps = {
-  filterKids: string[];
-  setFilterKids: React.Dispatch<React.SetStateAction<string[]>>;
+  kidFilter: 'both' | 'mateo' | 'lucas';
+  setKidFilter: Dispatch<SetStateAction<'both' | 'mateo' | 'lucas'>>;
   showFilters: boolean;
   hidePurchased: boolean;
   toggleHidePurchased: (value: boolean) => void;
+  priceRanges: PriceRange[];
+  selectedPriceRanges: string[];
+  togglePriceRange: (id: string) => void;
+  sliderMin: number;
+  sliderMax: number;
+  maxPrice: number;
+  sliderActive: boolean;
+  setSliderMin: (value: number) => void;
+  setSliderMax: (value: number) => void;
+  clearSlider: () => void;
 };
 
 const GiftFilters = ({
-  filterKids,
-  setFilterKids,
+  kidFilter,
+  setKidFilter,
   showFilters,
   hidePurchased,
-  toggleHidePurchased
+  toggleHidePurchased,
+  priceRanges,
+  selectedPriceRanges,
+  togglePriceRange,
+  sliderMin,
+  sliderMax,
+  maxPrice,
+  sliderActive,
+  setSliderMin,
+  setSliderMax,
+  clearSlider
 }: GiftFiltersProps) => {
-  const kidsList = ['Mateo', 'Lucas'];
-
   return (
     <div className={showFilters ? 'filters filters-expanded' : 'filters'}>
-      <h2>Kids</h2>
-      <ul>
-        {kidsList.map((kid) => {
-          return (
-            <li key={kid}>
+      <div className="filters__section">
+        <h2>Kids</h2>
+        <ul>
+          <li>
+            <label className="filter-option">
+              <input
+                type="radio"
+                name="kidFilter"
+                value="both"
+                checked={kidFilter === 'both'}
+                onChange={() => setKidFilter('both')}
+              />
+              <span>All Gifts</span>
+            </label>
+          </li>
+          <li>
+            <label className="filter-option">
+              <input
+                type="radio"
+                name="kidFilter"
+                value="mateo"
+                checked={kidFilter === 'mateo'}
+                onChange={() => setKidFilter('mateo')}
+              />
+              <span>Mateo Only</span>
+            </label>
+          </li>
+          <li>
+            <label className="filter-option">
+              <input
+                type="radio"
+                name="kidFilter"
+                value="lucas"
+                checked={kidFilter === 'lucas'}
+                onChange={() => setKidFilter('lucas')}
+              />
+              <span>Lucas Only</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div className="filters__section">
+        <h2>Status</h2>
+        <ul>
+          <li>
+            <label className="filter-option">
               <input
                 type="checkbox"
-                id={kid}
-                name={kid}
-                checked={filterKids.includes(kid)}
-                onChange={() =>
-                  setFilterKids(
-                    filterKids.includes(kid)
-                      ? filterKids.filter((k) => k !== kid)
-                      : [...filterKids, kid]
-                  )
-                }
+                id="hidepurchased"
+                name="hidepurchased"
+                checked={hidePurchased}
+                onChange={() => toggleHidePurchased(!hidePurchased)}
               />
-              <label htmlFor={kid}>{kid}</label>
+              <span>Hide Purchased</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div className="filters__section">
+        <h2>Price</h2>
+        <ul className="filters__ranges">
+          {priceRanges.map((range) => (
+            <li key={range.id}>
+              <label className="filter-option">
+                <input
+                  type="checkbox"
+                  disabled={sliderActive}
+                  checked={selectedPriceRanges.includes(range.id)}
+                  onChange={() => togglePriceRange(range.id)}
+                />
+                <span>{range.label}</span>
+              </label>
             </li>
-          );
-        })}
-      </ul>
-      <h2>Status</h2>
-      <ul>
-        <li>
-          <input
-            type="checkbox"
-            id="hidepurchased"
-            name="hidepurchased"
-            checked={hidePurchased}
-            onChange={() => toggleHidePurchased(!hidePurchased)}
-          />
-          <label htmlFor="hidepurchased">Hide Purchased</label>
-        </li>
-      </ul>
-      <h2>Price</h2>
-      <ul>
-        <li>$0 - $25</li>
-        <li>$25 - $50</li>
-        <li>$50 - $100</li>
-        <li>$100+</li>
-      </ul>
+          ))}
+        </ul>
+
+        <div className="filters__slider">
+          <div className="filters__slider-header">
+            <h3>Custom Range</h3>
+            {sliderActive && (
+              <button type="button" className="filters__clear" onClick={clearSlider}>
+                Clear
+              </button>
+            )}
+          </div>
+          <div className="filters__slider-row">
+            <label htmlFor="minPrice">Min: ${sliderMin}</label>
+            <input
+              type="range"
+              id="minPrice"
+              min={0}
+              max={maxPrice}
+              step={1}
+              value={sliderMin}
+              onChange={(e) => setSliderMin(Number(e.target.value))}
+            />
+          </div>
+          <div className="filters__slider-row">
+            <label htmlFor="maxPrice">Max: ${sliderMax}</label>
+            <input
+              type="range"
+              id="maxPrice"
+              min={0}
+              max={maxPrice}
+              step={1}
+              value={sliderMax}
+              onChange={(e) => setSliderMax(Number(e.target.value))}
+            />
+          </div>
+          <p className="filters__hint">When set, custom range overrides default ranges.</p>
+        </div>
+      </div>
     </div>
   );
 };

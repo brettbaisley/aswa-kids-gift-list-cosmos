@@ -6,6 +6,7 @@ const GiftSchema = new Schema({
     price: {"type": Number, default: 0.00, "required": true},
     purchased: {"type": Boolean, default: false, "required": true},
     kids: {"type": [String], "required": false},
+    imageUrl: {"type": String, "required": false, default: ""},
 },{ timestamps: true });
 
 export const GiftModel = mongoose.model('Gift', GiftSchema);

@@ -5,7 +5,7 @@
   "main": "index.js",
   "devDependencies": {
     "@azure/static-web-apps-cli": "^2.0.1",
-    "concurrently": "^7.6.0"
+    "concurrently": "^9.2.1"
   },
   "scripts": {
     "start-api": "cd api && npm start",

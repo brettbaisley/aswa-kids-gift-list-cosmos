@@ -5,4 +5,5 @@ export interface Gift {
   price: number | string;
   purchased: boolean;
   kids: string[];
+  imageUrl?: string;
 }

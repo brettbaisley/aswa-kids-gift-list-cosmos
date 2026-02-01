@@ -1,13 +1,180 @@
-button {
-    background: none;
+.gift-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+}
+
+.gift-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+.gift-card--purchased {
+    opacity: 0.65;
+    filter: saturate(0.5);
+}
+
+.gift-card__image {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gift-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gift-card__placeholder {
+    color: #64748b;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.gift-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.gift-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+}
+
+.giftTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.giftBrand {
+    font-size: 0.9rem;
+    color: #475569;
+    margin: 0;
+}
+
+.giftPrice {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    background: #e0f2fe;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+}
+
+.gift-card__meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.giftStatus {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.giftStatus--available {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.giftStatus--purchased {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.giftKids {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.giftKidPill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.giftKidPill--none {
+    background: #fde68a;
+    color: #92400e;
+}
+
+.gift-card__edit {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
     border: none;
+    background: #f8fafc;
+    border-radius: 999px;
+    padding: 0.35rem 0.5rem;
     cursor: pointer;
-    outline: none;
-    font-size: 1.5rem;
-    background-color: none;
+}
+
+.gift-card__edit:hover {
+    background: #e2e8f0;
+}
+
+.gift-card--editing {
+    gap: 0.75rem;
+}
+
+.gift-card--editing input[type="text"],
+.gift-card--editing input[type="url"] {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.9rem;
+}
+
+.gift-card__checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-group button {
     border: none;
-    padding: .25rem;
-    margin: .25rem
+    border-radius: 8px;
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
 }
 
 .success:hover {
@@ -16,19 +183,4 @@ button {
 
 .warning:hover {
     background-color: rgba(210, 126, 126, 0.5);
-}
-
-
-.title {
-    font-size: 1.5rem;
-}
-
-.brand {
-    font-size: .8rem;
-    font-weight: 300;
-}
-
-.purchased,
-.purchased > p  {
-    color: rgba(0,0,0,0.5);
 }
