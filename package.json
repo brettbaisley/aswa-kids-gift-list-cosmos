@@ -4,13 +4,13 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {
-    "@azure/static-web-apps-cli": "github:azure/static-web-apps-cli",
+    "@azure/static-web-apps-cli": "^2.0.1",
     "concurrently": "^7.6.0"
   },
   "scripts": {
     "start-api": "cd api && npm start",
     "start-app": "cd app && npm start",
-    "start-swa": "swa start http://localhost:3000 --api-location http://localhost:7071",
+    "start-swa": "swa start http://localhost:5173 --api-location http://localhost:7071",
     "start-dev": "concurrently \"npm:start-api\" \"npm:start-app\" \"npm:start-swa\"",
     "start": "npm run start-dev"
   },
