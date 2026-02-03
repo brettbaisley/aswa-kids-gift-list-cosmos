@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Header.css';
 import { useAuthContext, type UserInfo } from '../context/AuthContext';
+import Modal from './Modal';
 
 const Header = () => {
   const { userInfo, setUserInfo } = useAuthContext();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   useEffect(() => {
     const loadUserInfo = async () => {
@@ -35,9 +37,9 @@ const Header = () => {
       <h1>Gifts</h1>
       <div className="auth-list">
         {!userInfo ? (
-          <a className="btn-loginout" href="/.auth/login/github?post_login_redirect_uri=/">
+          <button className="btn-loginout" type="button" onClick={() => setIsAuthModalOpen(true)}>
             Login
-          </a>
+          </button>
         ) : (
           <div className="user">
             <p>
@@ -49,6 +51,31 @@ const Header = () => {
           </div>
         )}
       </div>
+      <Modal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)}>
+        <div className="auth-modal">
+          <h2>Choose a sign-in method</h2>
+          <div className="auth-provider-list">
+            <a
+              className="auth-provider-button github"
+              href="/.auth/login/github?post_login_redirect_uri=/"
+            >
+              Continue with GitHub
+            </a>
+            <a
+              className="auth-provider-button entra"
+              href="/.auth/login/aad?post_login_redirect_uri=/"
+            >
+              Continue with Entra ID
+            </a>
+            <a
+              className="auth-provider-button google"
+              href="/.auth/login/google?post_login_redirect_uri=/"
+            >
+              Continue with Google
+            </a>
+          </div>
+        </div>
+      </Modal>
     </header>
   );
 };
