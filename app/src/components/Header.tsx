@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <header>
-      <h1>Gifts</h1>
+      <h1>Wonderlist</h1>
       <div className="auth-list">
         {!userInfo ? (
           <button className="btn-loginout" type="button" onClick={() => setIsAuthModalOpen(true)}>
@@ -65,7 +65,7 @@ const Header = () => {
               className="auth-provider-button entra"
               href="/.auth/login/aad?post_login_redirect_uri=/"
             >
-              Continue with Entra ID
+              Continue with Microsoft
             </a>
             <a
               className="auth-provider-button google"
