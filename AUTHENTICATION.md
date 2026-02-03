@@ -48,7 +48,7 @@ Azure AD B2C supports email one-time passcode (OTP) authentication.
    ```
 4. Configure application settings in Azure portal with your B2C credentials
 
-**Documentation**: [Azure AD B2C Email OTP](https://learn.microsoft.com/en-us/azure/active-directory-b2c/phone-authentication-user-flows)
+**Documentation**: [Azure AD B2C Email OTP](https://learn.microsoft.com/en-us/azure/active-directory-b2c/add-identity-provider)
 
 ### Option 2: Custom Authentication Provider
 
