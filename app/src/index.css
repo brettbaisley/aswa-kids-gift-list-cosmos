@@ -85,3 +85,12 @@ input {
   cursor: pointer;
   line-height: 1;
 }
+
+/* Responsive modal styling for mobile */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 90%;
+    padding: 15px;
+    padding-top: 40px;
+  }
+}
