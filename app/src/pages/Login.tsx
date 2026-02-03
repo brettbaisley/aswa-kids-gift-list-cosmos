@@ -7,6 +7,9 @@ const LoginPage = () => {
           <a href="/.auth/login/github?post_login_redirect_uri=/">Sign In With Github</a>
         </li>
         <li>
+          <a href="/.auth/login/google?post_login_redirect_uri=/">Sign In With Google</a>
+        </li>
+        <li>
           <a href="/.auth/login/aad?post_login_redirect_uri=/">Sign In With Microsoft AAD</a>
         </li>
       </ul>

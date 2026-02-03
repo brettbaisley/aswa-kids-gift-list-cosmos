@@ -4,6 +4,11 @@ import { HttpRequest } from "@azure/functions";
  * Extracts user identity from Azure Static Web Apps authentication headers
  * Azure SWA provides user info in the x-ms-client-principal header as base64-encoded JSON
  * 
+ * Supported authentication providers:
+ * - GitHub: userDetails contains the GitHub username
+ * - Google: userDetails contains the email address
+ * - Microsoft AAD: userDetails contains the email address
+ * 
  * @param req - The HTTP request object
  * @returns The user's identity (userDetails) or null if not authenticated
  */
@@ -19,7 +24,7 @@ export function getUserIdentity(req: HttpRequest): string | null {
         const decoded = Buffer.from(header, 'base64').toString('utf-8');
         const clientPrincipal = JSON.parse(decoded);
         
-        // Return the userDetails field (GitHub username or email)
+        // Return the userDetails field (GitHub username, Google email, or AAD email)
         return clientPrincipal.userDetails || null;
     } catch (error) {
         console.error('Error extracting user identity:', error);
