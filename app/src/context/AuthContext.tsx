@@ -14,7 +14,7 @@ type AuthContextValue = {
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 // Static list of admin users (case-insensitive)
-const ADMIN_USERS = ['brettbaisley', 'enerlise615@gmail.com'];
+const ADMIN_USERS = ['brettbaisley', 'brett.baisley@gmail.com', 'enerlise615@gmail.com'];
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>(undefined);

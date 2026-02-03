@@ -10,11 +10,16 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <span className="close" onClick={onClose}>
+    <div className="modal" onClick={onClose} role="presentation">
+      <div
+        className="modal-content"
+        role="dialog"
+        aria-modal="true"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button className="modal-close" type="button" onClick={onClose} aria-label="Close">
           &times;
-        </span>
+        </button>
         {children}
       </div>
     </div>
