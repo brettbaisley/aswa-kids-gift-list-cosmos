@@ -7,4 +7,5 @@ export interface Gift {
   kids: string[];
   imageUrl?: string;
   createdBy?: string;
+  purchasedBy?: string;
 }

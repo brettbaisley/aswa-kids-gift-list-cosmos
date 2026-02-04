@@ -10,6 +10,7 @@ interface IGift extends Document {
     kids?: string[];
     imageUrl?: string;
     createdBy?: string;
+    purchasedBy?: string;
     createdAt?: Date;
     updatedAt?: Date;
 }

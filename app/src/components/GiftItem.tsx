@@ -28,6 +28,10 @@ const DisplayGiftItem = ({ gift, handleStartEdit, handleDelete, handleTogglePurc
   const { userInfo, isAdmin } = useAuthContext();
   const kids = gift.kids ?? [];
   const price = Number(gift.price) || 0;
+  
+  // Check if current user can unmark the gift as purchased
+  const canUnmarkPurchase = !gift.purchased || isAdmin || (gift.purchasedBy === userInfo?.userDetails);
+  
   return (
     <div className={gift.purchased ? 'gift-card gift-card--purchased' : 'gift-card'}>
       <div className="gift-card__image">
@@ -47,6 +51,9 @@ const DisplayGiftItem = ({ gift, handleStartEdit, handleDelete, handleTogglePurc
           <span className={gift.purchased ? 'giftStatus giftStatus--purchased' : 'giftStatus giftStatus--available'}>
             {gift.purchased ? 'Purchased' : 'Available'}
           </span>
+          {gift.purchased && gift.purchasedBy && (
+            <span className="giftPurchasedBy">by {gift.purchasedBy}</span>
+          )}
         </div>
         <div className="giftKids">
           {kids.length > 0 ? (
@@ -75,6 +82,8 @@ const DisplayGiftItem = ({ gift, handleStartEdit, handleDelete, handleTogglePurc
           <button 
             className={gift.purchased ? 'gift-card__purchased-btn gift-card__purchased-btn--purchased' : 'gift-card__purchased-btn'}
             onClick={handleTogglePurchased}
+            disabled={!canUnmarkPurchase}
+            title={!canUnmarkPurchase ? `Only ${gift.purchasedBy} or admins can unmark this gift` : ''}
             aria-label={gift.purchased ? 'Mark as not purchased' : 'Mark as purchased'}
           >
             {gift.purchased ? 'Mark as Not Purchased' : 'Mark as Purchased'}

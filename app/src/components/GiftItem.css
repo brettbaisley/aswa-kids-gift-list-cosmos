@@ -277,3 +277,22 @@
 .gift-card__purchased-btn--purchased:hover {
     background: #4b5563;
 }
+
+.gift-card__purchased-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: #9ca3af;
+}
+
+.gift-card__purchased-btn:disabled:hover {
+    background: #9ca3af;
+}
+
+.giftPurchasedBy {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: #fef3c7;
+    color: #92400e;
+}

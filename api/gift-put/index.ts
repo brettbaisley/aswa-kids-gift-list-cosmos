@@ -2,7 +2,7 @@
 
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import GiftService from '../services/gift.service';
-import { getUserIdentity, canModifyGift } from '../utils/auth';
+import { getUserIdentity, canModifyGift, isAdmin } from '../utils/auth';
 
 export default async function httpTrigger(req: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
     context.log('HTTP trigger function processed a request.');
@@ -36,7 +36,7 @@ export default async function httpTrigger(req: HttpRequest, context: InvocationC
             };
         }
         
-        // Check if user is authorized (creator or admin)
+        // Check if user is authorized to modify the gift
         if (!canModifyGift(userIdentity, existingGift.createdBy)) {
             return {
                 status: 403,
@@ -49,6 +49,36 @@ export default async function httpTrigger(req: HttpRequest, context: InvocationC
         
         const bodyText = await req.text();
         const body = JSON.parse(bodyText);
+        
+        // Check purchase authorization: only the person who marked it as purchased can unmark it (or admins)
+        if (existingGift.purchased && !body.purchased) {
+            // User is trying to unmark the gift as not purchased
+            const isPurchaser = existingGift.purchasedBy === userIdentity;
+            const isUserAdmin = isAdmin(userIdentity);
+            
+            if (!isPurchaser && !isUserAdmin) {
+                return {
+                    status: 403,
+                    body: JSON.stringify({ 
+                        error: `Only the person who marked this gift as purchased (${existingGift.purchasedBy}) or administrators can mark it as not purchased.` 
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+            }
+        }
+        
+        // If marking as purchased, set the purchasedBy field
+        if (!existingGift.purchased && body.purchased) {
+            body.purchasedBy = userIdentity;
+        }
+        
+        // If unmarking as purchased, clear the purchasedBy field
+        if (existingGift.purchased && !body.purchased) {
+            body.purchasedBy = null;
+        }
+        
         const gift = await GiftService.updateGift(id, body);
         return {
             body: JSON.stringify(gift),
