@@ -1,5 +1,8 @@
 import './ToggleButtons.css';
 
+import Gridsvg from '../assets/icons/grid.svg?react';
+import Listsvg from '../assets/icons/list.svg?react';
+
 type ToggleButtonsProps = {
   showFilters: boolean;
   handleFilterToggle: () => void;
@@ -28,7 +31,7 @@ const ToggleButtons = ({
         className={displayType === 'grid' ? 'toggleButton toggleGrid' : 'toggleButton toggleGrid is-active'}
         onClick={handleDisplayTypeToggle}
       >
-        <i className={displayType === 'grid' ? 'fa-light fa-list' : 'fa-light fa-grid'}></i>
+        {displayType === 'grid' ? <Listsvg className="icon" aria-hidden="true" /> : <Gridsvg className="icon" aria-hidden="true" />}
         <span>{displayType === 'grid' ? 'List View' : 'Grid View'}</span>
       </button>
     </div>

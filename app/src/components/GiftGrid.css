@@ -66,6 +66,11 @@
     margin-left: auto;
 }
 
+.gift-grid-item--list .gift-card__purchased-btn {
+    width: auto;
+    align-self: flex-start;
+}
+
 @media (max-width: 640px) {
     .gift-grid-item--list .gift-card {
         flex-direction: column;

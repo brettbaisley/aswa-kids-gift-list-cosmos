@@ -3,6 +3,10 @@ import './GiftItem.css';
 import { useAuthContext } from '../context/AuthContext';
 import type { Gift } from '../types/gift';
 
+import Ban from '../assets/icons/ban.svg?react';
+import Trashcan from '../assets/icons/trash.svg?react';
+import Pen from '../assets/icons/square-pen.svg?react';
+
 type DisplayGiftItemProps = {
   gift: Gift;
   handleStartEdit: () => void;
@@ -69,16 +73,18 @@ const DisplayGiftItem = ({ gift, handleStartEdit, handleDelete, handleTogglePurc
       </div>
       {userInfo && (
         <>
-          <button className="gift-card__edit" onClick={handleStartEdit} aria-label="Edit gift">
-            <i className="fa-light fa-square-pen"></i>
-            <span className="btn-text">Edit</span>
-          </button>
-          {isAdmin && (
-            <button className="gift-card__delete" onClick={handleDelete} aria-label="Delete gift">
-              <i className="fa-light fa-trash"></i>
-              <span className="btn-text">Delete</span>
+          <div className="gift-card__actions">
+            <button className="gift-card__edit" onClick={handleStartEdit} aria-label="Edit gift">
+              <Pen className="icon" aria-hidden="true" />
+              {/* <span className="btn-text">Edit</span> */}
             </button>
-          )}
+            {isAdmin && (
+              <button className="gift-card__delete" onClick={handleDelete} aria-label="Delete gift">
+                <Trashcan className="icon" aria-hidden="true" />
+                {/* <span className="btn-text">Delete</span> */}
+              </button>
+            )}
+          </div>
           <button 
             className={gift.purchased ? 'gift-card__purchased-btn gift-card__purchased-btn--purchased' : 'gift-card__purchased-btn'}
             onClick={handleTogglePurchased}
@@ -161,11 +167,11 @@ const EditGiftItem = ({
 
       <div className="btn-group">
         <button className="success" onClick={handleUpdateGift} aria-label="Save gift">
-          <i className="fa-light fa-pen"></i>
+          <Pen className="icon" aria-hidden="true" />
           <span>Save</span>
         </button>
         <button className="warning" onClick={handleStopEdit} aria-label="Cancel edit">
-          <i className="fa-light fa-ban"></i>
+          <Ban className="icon" aria-hidden="true" />
           <span>Cancel</span>
         </button>
       </div>

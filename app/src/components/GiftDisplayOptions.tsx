@@ -1,5 +1,8 @@
 import './GiftDisplayOptions.css';
 
+import Gridsvg from '../assets/icons/grid.svg?react';
+import Listsvg from '../assets/icons/list.svg?react';
+
 type GiftDisplayOptionsProps = {
   displayType: 'grid' | 'list';
   setDisplayType: (value: 'grid' | 'list') => void;
@@ -22,13 +25,13 @@ const GiftDisplayOptions = ({
           aria-pressed={displayType === 'grid'}
           onClick={() => setDisplayType('grid')}
         >
-          <i className="fa-light fa-grid"></i>
+          <Gridsvg className="icon" aria-hidden="true" />
         </button>
         <button
           aria-pressed={displayType === 'list'}
           onClick={() => setDisplayType('list')}
         >
-          <i className="fa-light fa-list"></i>
+          <Listsvg className="icon" aria-hidden="true" />
         </button>
       </div>
 

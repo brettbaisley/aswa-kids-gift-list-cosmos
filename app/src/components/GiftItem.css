@@ -125,10 +125,15 @@
     color: #92400e;
 }
 
-.gift-card__edit {
+.gift-card__actions {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.gift-card__edit {
     border: 2px solid #cbd5e1;
     background: #ffffff;
     color: #475569;
@@ -155,9 +160,6 @@
 }
 
 .gift-card__delete {
-    position: absolute;
-    top: 0.75rem;
-    right: 5.5rem;
     border: 2px solid #fca5a5;
     background: #ffffff;
     color: #dc2626;
@@ -185,6 +187,12 @@
 
 .btn-text {
     white-space: nowrap;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
 }
 
 .gift-card--editing {
