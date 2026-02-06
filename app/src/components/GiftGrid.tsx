@@ -1,4 +1,5 @@
 import './GiftGrid.css';
+import { useState, useEffect } from 'react';
 import GiftItem from './GiftItem';
 import type { Gift } from '../types/gift';
 
@@ -15,16 +16,37 @@ const GiftGrid = ({
   handleUpdate,
   handleDelete
 }: GiftGridProps) => {
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentDisplayType, setCurrentDisplayType] = useState(displayType);
+
+  useEffect(() => {
+    if (displayType !== currentDisplayType) {
+      setIsTransitioning(true);
+      
+      // Small delay to allow fade-out
+      setTimeout(() => {
+        setCurrentDisplayType(displayType);
+        
+        // Allow fade-in to complete
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50);
+      }, 200);
+    }
+  }, [displayType, currentDisplayType]);
+
   if (!giftList) return <h2>No Gifts to Display</h2>;
   if (giftList.length === 0) return <h2>No gifts match your filters.</h2>;
 
-  const ulClassName = displayType === 'list' ? 'gifts gifts-list' : 'gifts gifts-grid';
+  const ulClassName = `${
+    currentDisplayType === 'list' ? 'gifts gifts-list' : 'gifts gifts-grid'
+  }${isTransitioning ? ' gifts--transitioning' : ''}`;
 
   return (
     <ul className={ulClassName}>
       {giftList.map((gift) => {
         const itemClassName = `gift-grid-item ${
-          displayType === 'list' ? 'gift-grid-item--list' : 'gift-grid-item--grid'
+          currentDisplayType === 'list' ? 'gift-grid-item--list' : 'gift-grid-item--grid'
         }${gift.purchased ? ' gift-grid-item--purchased' : ''}`;
 
         return (

@@ -3,6 +3,14 @@
     padding: 0;
     margin: 0;
     width: 100%;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.gifts--transitioning {
+    opacity: 0;
+    transform: scale(0.98);
 }
 
 .gifts-grid {
@@ -37,6 +45,18 @@
 
 .gift-grid-item {
     list-style: none;
+    animation: fadeInItem 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeInItem {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .gift-grid-item--list .gift-card {
