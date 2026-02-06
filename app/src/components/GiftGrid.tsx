@@ -1,5 +1,5 @@
 import './GiftGrid.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import GiftItem from './GiftItem';
 import type { Gift } from '../types/gift';
 
@@ -18,16 +18,18 @@ const GiftGrid = ({
 }: GiftGridProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentDisplayType, setCurrentDisplayType] = useState(displayType);
+  const [currentGiftList, setCurrentGiftList] = useState(giftList);
+  const prevGiftListRef = useRef(giftList);
+  const isInitialMount = useRef(true);
 
+  // Handle display type changes
   useEffect(() => {
     if (displayType !== currentDisplayType) {
       setIsTransitioning(true);
       
-      // Small delay to allow fade-out
       setTimeout(() => {
         setCurrentDisplayType(displayType);
         
-        // Allow fade-in to complete
         setTimeout(() => {
           setIsTransitioning(false);
         }, 50);
@@ -35,8 +37,40 @@ const GiftGrid = ({
     }
   }, [displayType, currentDisplayType]);
 
-  if (!giftList) return <h2>No Gifts to Display</h2>;
-  if (giftList.length === 0) return <h2>No gifts match your filters.</h2>;
+  // Handle gift list changes (filtering)
+  useEffect(() => {
+    // Skip animation on initial mount
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      prevGiftListRef.current = giftList;
+      setCurrentGiftList(giftList);
+      return;
+    }
+
+    // Check if gift list actually changed
+    const prevIds = prevGiftListRef.current?.map(g => g._id).sort().join(',') || '';
+    const currentIds = giftList?.map(g => g._id).sort().join(',') || '';
+    
+    if (prevIds !== currentIds) {
+      setIsTransitioning(true);
+      
+      setTimeout(() => {
+        setCurrentGiftList(giftList);
+        prevGiftListRef.current = giftList;
+        
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50);
+      }, 200);
+    } else {
+      // Update without transition if only properties changed (like purchased status)
+      setCurrentGiftList(giftList);
+      prevGiftListRef.current = giftList;
+    }
+  }, [giftList]);
+
+  if (!currentGiftList) return <h2>No Gifts to Display</h2>;
+  if (currentGiftList.length === 0) return <h2>No gifts match your filters.</h2>;
 
   const ulClassName = `${
     currentDisplayType === 'list' ? 'gifts gifts-list' : 'gifts gifts-grid'
@@ -44,7 +78,7 @@ const GiftGrid = ({
 
   return (
     <ul className={ulClassName}>
-      {giftList.map((gift) => {
+      {currentGiftList.map((gift) => {
         const itemClassName = `gift-grid-item ${
           currentDisplayType === 'list' ? 'gift-grid-item--list' : 'gift-grid-item--grid'
         }${gift.purchased ? ' gift-grid-item--purchased' : ''}`;
